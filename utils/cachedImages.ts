@@ -52,8 +52,9 @@ export default async function getResults(): Promise<ImageProps[]> {
       src: imageFile ? `/enigmas/${encodeURIComponent(folder)}/${encodeURIComponent(imageFile)}` : "",
       width: 720,
       height: 480,
-
-      tags, // <-- NEW FIELD
+      computer,
+      difficulty,
+      tags,
     };
   });
 
