@@ -113,7 +113,6 @@ def string_to_md(text, outfile="output.md"):
     Path(outfile).write_text(text, encoding="utf-8")
     print(f"Wrote {outfile}")
 
-
 def convert2md(t):
     t = t.replace('\n\\medskip\n\\textbf', '')
     t = t.replace("*{Énoncé}\n", "## Énoncé\n\n")
@@ -160,7 +159,9 @@ def main():
         text = re.sub(r'\\item\s+\\indicators', r'\\item\\indicators', text)
 
         text = re.sub(fr'\\begin{left_embrace}description{right_embrace}', fr'\\begin{left_embrace}itemize{right_embrace}', text)
+        text = re.sub(fr'\\begin{left_embrace}align*{right_embrace}', fr'$$\n\\begin{left_embrace}align*{right_embrace}', text)
         text = re.sub(fr'\\end{left_embrace}description{right_embrace}', fr'\\end{left_embrace}itemize{right_embrace}', text)
+        text = re.sub(fr'\\end{left_embrace}align*{right_embrace}', fr'\\end{left_embrace}align*{right_embrace}\n$$', text)
 
         S,Q = text.split("{Questions}")
         out = convert2md(S)
