@@ -104,6 +104,7 @@ def convert2md(t):
     t = t.replace("*{Énoncé}\n", "## Énoncé\n\n")
     t = t.replace(r'\(', '$').replace(r'\)', '$')
     t = t.replace(r'\og ', '"').replace(r' \fg{}', '"')
+    t = t.replace(r'---', '$---$')
     t = latex_itemize_to_md(t)
     return t
 

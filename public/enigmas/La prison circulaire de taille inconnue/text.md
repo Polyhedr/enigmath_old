@@ -6,7 +6,7 @@ Si, à midi pile, l’interrupteur d'une cellule est en position "on", alors l�
 
 Afin d’empêcher toute forme de communication, chaque nuit à minuit, le gardien diffuse du gaz anesthésiant dans tout l’anneau, remet tous les interrupteurs sur "off", et réarrange les prisonniers comme bon lui semble. Mais il garde une règle immuable : une personne par cellule.
 
-Un jour, le gardien entre dans votre cellule et vous lance un défi. Pour gagner votre liberté --- et celle de tous les autres --- une seule règle :
+Un jour, le gardien entre dans votre cellule et vous lance un défi. Pour gagner votre liberté $---$ et celle de tous les autres $---$ une seule règle :
 à n’importe quel moment, n’importe quel prisonnier peut crier "Nous sommes $n$ prisonniers !"
 S’il dit vrai : tout le monde est libre.
 S’il se trompe : tout le monde est exécuté.
