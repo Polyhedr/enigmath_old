@@ -7,7 +7,7 @@ Considérons un jeu auquel participent $K$ joueurs. Chaque joueur reçoit **troi
 
    - soit de **relancer les trois dés** pour tenter d'obtenir un meilleur score.  
 
-Si un joueur choisit de relancer, il **perd irréversiblement** son score précédent, même si celui-ci était plus élevé. Chaque joueur peut relancer au maximum **deux fois**, c'est-à-dire qu'il effectue entre **un et trois lancers au total**.  
+    Si un joueur choisit de relancer, il **perd irréversiblement** son score précédent, même si celui-ci était plus élevé. Chaque joueur peut relancer au maximum **deux fois**, c'est-à-dire qu'il effectue entre **un et trois lancers au total**.  
 
 Les scores intermédiaires sont **gardés secrets** jusqu'à la fin de la partie. Lorsque tous les joueurs ont terminé, les scores sont révélés. Le joueur qui possède le **plus petit score** est déclaré **perdant**. En cas d'égalité pour le plus faible score, le perdant est choisi **au hasard parmi les ex æquo**.
 
