@@ -5,6 +5,7 @@ left_embrace = "{"
 right_embrace = "}"
 OK = [
 "L'échiquier du diable",
+"La part du trésor",
 ]
 
 def extract_tags(tex):
@@ -37,9 +38,39 @@ def extract_indicators(text):
     return max(difficulties), max(computers)
 
 
-
-
 # .md
+
+def convert_itemize_block(block: str) -> str:
+    """
+    Convert one LaTeX itemize block (content only) into Markdown bullets.
+    """
+    # Split on \item occurrences
+    items = re.split(r'\\item', block)
+    md_lines = []
+    for item in items:
+        line = item.strip()
+        if line:
+            md_lines.append(f"- {line}  ")
+    return "\n".join(md_lines)
+
+def latex_itemize_to_md(text: str) -> str:
+    """
+    Convert ALL LaTeX itemize environments inside a LaTeX document
+    into Markdown bullet lists.
+    """
+
+    # Regex to capture each block including begin/end lines
+    pattern = re.compile(
+        r"\\begin\{itemize\}(.*?)\\end\{itemize\}",
+        re.DOTALL
+    )
+
+    def replacer(match):
+        content = match.group(1)
+        return convert_itemize_block(content)
+
+    # Replace every itemize block
+    return pattern.sub(replacer, text)
 
 def string_to_md(text, outfile="output.md"):
     Path(outfile).write_text(text, encoding="utf-8")
@@ -47,10 +78,11 @@ def string_to_md(text, outfile="output.md"):
 
 
 def convert2md(t):
-    t = t.replace('\n\n\\medskip\n\\textbf', '')
+    t = t.replace('\n\\medskip\n\\textbf', '')
     t = t.replace("*{Énoncé}\n", "## Énoncé\n\n")
     t = t.replace(r'\(', '$').replace(r'\)', '$')
     t = t.replace(r'\og ', '"').replace(r' \fg{}', '"')
+    t = latex_itemize_to_md(t)
     return t
 
 def process_indicators(q):
@@ -88,18 +120,17 @@ def main():
         out += '\n\n**Questions :**\n\n'
         for e, q in enumerate(Q.split("\item\indicators")[1:]):
             indicators, q = process_indicators(q)
-            out += f"{e}. {indicators}  {q}\n\n"
+            out += f"{e+1}. {indicators} {q}\n\n"
         out = f"\end{left_embrace}enumerate{right_embrace}".join(out.split(f"\end{left_embrace}enumerate{right_embrace}")[:-1])
         out += "\n\n&nbsp;\n\n---"
         check = sum(r in str(tex_path) for r in OK)
-        string_to_md(out)
         if check:
             string_to_md(out, str(tex_path).replace(tex_path.suffix,'.md'))
         else:
             string_to_md(out)
+            print(tex_path)
+            exit()
         
-        
-
         out_lines = []
         out_lines.append(format_number(hotpep))
         out_lines.append(format_number(laptop))

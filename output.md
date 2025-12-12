@@ -1,26 +1,29 @@
 ## Énoncé
 
-Alice et Bob se partagent une pizza, selon le "protocole de politesse de la pizza".
-Bob découpe d’abord la pizza en $n$ parts, de tailles arbitraires et non nécessairement égales.
-Alice commence en choisissant la part de son choix. Ensuite, à tour de rôle, chaque joueur retire une part, mais par politesse, il ne peut prendre qu’une part située à l’une des deux extrémités accessibles, c’est-à-dire adjacente à une part déjà retirée. Ainsi, à chaque coup (sauf au tout premier et au tout dernier), un joueur dispose exactement de deux parts possibles.
-Le but pour Alice est de manger le plus de pizza possible.
+Vous avez été enfermés dans une prison formant un anneau parfait de $n$ cellules (vous ne connaissez pas $n$), toutes identiques, isolées, et chacune contenant exactement un prisonnier.
+Dans chaque cellule se trouvent un interrupteur et une ampoule, mais le câblage a été manifestement conçu par un ingénieur fou.
+Si, à midi pile, l’interrupteur d'une cellule est en position "on", alors l’ampoule de la cellule voisine (dans le sens horaire) émet un bref flash. Sinon, la lampe reste éteinte.
+
+Afin d’empêcher toute forme de communication, chaque nuit à minuit, le gardien diffuse du gaz anesthésiant dans tout l’anneau, remet tous les interrupteurs sur "off", et réarrange les prisonniers comme bon lui semble. Mais il garde une règle immuable : une personne par cellule.
+
+Un jour, le gardien entre dans votre cellule et vous lance un défi. Pour gagner votre liberté --- et celle de tous les autres --- une seule règle :
+à n’importe quel moment, n’importe quel prisonnier peut crier "Nous sommes $n$ prisonniers !"
+S’il dit vrai : tout le monde est libre.
+S’il se trompe : tout le monde est exécuté.
+
+Le gardien vous autorise à envoyer un unique message écrit à tous les autres prisonniers, dans lequel vous pouvez expliquer les règles et proposer un plan. Eux n’ont pas le droit de répondre.
+Naturellement, le gardien lira soigneusement votre note... et ensuite, il mélangera les prisonniers autant que nécessaire pour tenter de faire échouer votre stratégie.
+
 
 **Questions :**
 
-0. 🌶️${}^{1.0}$   Montrez qu'Alice peut manger au moins la moitié de la pizza avec un nombre pair de parts.
+1. 🌶️${}^{2.2}$  On admet que les prisonniers peuvent lancer des pièces, ce qui leur permet de prendre des décisions aléatoires que le gardien ne peut pas prévoir, même s’il connaît leur stratégie. Décrivez une stratégie permettant aux prisonniers de déterminer $n$ (presque sûrement).
 
 
-1. 🌶️${}^{2.1}$   Montrez qu’Alice peut manger au moins le tiers de la pizza en suivant une stratégie où, après avoir choisi sa première part, elle prend systématiquement la part révélée par Bob.
+2. 🌶️${}^{2.9}$  Donnez une solution qui n’utilise aucune forme d’aléatoire et qui garantit d’aboutir en un nombre déterminé de jours.
 
 
-2. 🌶️${}^{1.8}$   Montrez que c’est le mieux qu’Alice puisse faire si, après avoir choisi sa première part, elle prend systématiquement la part révélée par Bob.
-
-
-3. 🌶️${}^{1.0}$💻${}^{2.2}$   Montrez que Bob peut choisir une découpe de la pizza de manière à s'assurer de manger au moins $\frac{5}{9}$ de celle-ci.
-
-
-4. 🌶️${}^{4.4}$   Montrez qu’Alice peut manger au moins $\frac{4}{9}$ de la pizza.
-
+3. 🌶️${}^{3.0}$  On suppose que la prison n’est plus circulaire, mais forme un graphe orienté fortement connexe, chaque cellule contenant au moins un interrupteur et une lumière, et chaque lumière étant contrôlée par exactement un interrupteur situé dans une autre cellule. Décrivez une stratégie permettant aux prisonniers de déterminer $n$.
 
 
 &nbsp;
