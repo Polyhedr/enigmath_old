@@ -1,25 +1,26 @@
 ## Énoncé
 
-Le diable propose un défi à Alice et Bob. Il commence par convoquer Alice et lui présente un échiquier de taille $8 \times 8$ sur lequel il a disposé des pions, comme bon lui semble. Il désigne ensuite une case particulière, appelée la "case mystère".
-
-Alice a alors la possibilité de modifier légèrement la configuration des pions : elle peut soit retirer un pion, soit en ajouter un sur une case vide, soit ne rien faire. Après avoir effectué son action, Alice quitte la pièce.
-
-Le diable fait ensuite entrer Bob. En observant l'échiquier tel qu'Alice l'a laissé, Bob doit identifier la case mystère.
-
-Aucun contact n'est autorisé entre Alice et Bob une fois le défi commencé. Alice et Bob connaissent les règles du jeu à l'avance et peuvent convenir d'une stratégie commune avant le début du défi. La case mystère peut être n'importe quelle case de l'échiquier.
+Alice et Bob se partagent une pizza, selon le "protocole de politesse de la pizza".
+Bob découpe d’abord la pizza en $n$ parts, de tailles arbitraires et non nécessairement égales.
+Alice commence en choisissant la part de son choix. Ensuite, à tour de rôle, chaque joueur retire une part, mais par politesse, il ne peut prendre qu’une part située à l’une des deux extrémités accessibles, c’est-à-dire adjacente à une part déjà retirée. Ainsi, à chaque coup (sauf au tout premier et au tout dernier), un joueur dispose exactement de deux parts possibles.
+Le but pour Alice est de manger le plus de pizza possible.
 
 **Questions :**
 
-0. 🌶️${}^{1.9}$  Trouvez une stratégie qu'Alice et Bob peuvent mettre en place pour être sûrs de trouver la case mystère. Si Alice est contrainte de modifier une case, existe-t-il une stratégie valable ?
+0. 🌶️${}^{1.0}$   Montrez qu'Alice peut manger au moins la moitié de la pizza avec un nombre pair de parts.
 
 
-1. 🌶️${}^{2.0}$  Le diable décide de retirer une case de l'échiquier (laissant ainsi $n=63$ cases). La stratégie d'Alice et Bob reste-t-elle valable ? Si Alice est contrainte de modifier une case, existe-t-il une stratégie valable ?
+1. 🌶️${}^{2.1}$   Montrez qu’Alice peut manger au moins le tiers de la pizza en suivant une stratégie où, après avoir choisi sa première part, elle prend systématiquement la part révélée par Bob.
 
 
-2. 🌶️${}^{2.1}$  Trouvez une stratégie probabiliste, fixée à l’avance entre Alice et Bob (c’est-à-dire dépendant d’un tirage aléatoire partagé, mais inconnu du diable), telle que la probabilité de réussite soit strictement supérieure à $2^{1.5}-2\approx 0.8284$, quel que soit le nombre $ n\geq 2 $ de cases.
+2. 🌶️${}^{1.8}$   Montrez que c’est le mieux qu’Alice puisse faire si, après avoir choisi sa première part, elle prend systématiquement la part révélée par Bob.
 
 
-3. 🌶️${}^{1.5}$  Si Alice est contrainte de modifier deux cases (éventuellement la même case, ce qui revient à ne rien faire), trouvez une stratégie qu’Alice et Bob peuvent mettre en place pour être sûrs de trouver la case mystère, quel que soit le nombre $ n \geq 2 $ de cases.
+3. 🌶️${}^{1.0}$💻${}^{2.2}$   Montrez que Bob peut choisir une découpe de la pizza de manière à s'assurer de manger au moins $\frac{5}{9}$ de celle-ci.
+
+
+4. 🌶️${}^{4.4}$   Montrez qu’Alice peut manger au moins $\frac{4}{9}$ de la pizza.
+
 
 
 &nbsp;

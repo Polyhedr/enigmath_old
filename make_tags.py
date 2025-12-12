@@ -88,10 +88,11 @@ def main():
         out += '\n\n**Questions :**\n\n'
         for e, q in enumerate(Q.split("\item\indicators")[1:]):
             indicators, q = process_indicators(q)
-            out += f"{e}. {indicators} {q}\n\n"
+            out += f"{e}. {indicators}  {q}\n\n"
         out = f"\end{left_embrace}enumerate{right_embrace}".join(out.split(f"\end{left_embrace}enumerate{right_embrace}")[:-1])
         out += "\n\n&nbsp;\n\n---"
         check = sum(r in str(tex_path) for r in OK)
+        string_to_md(out)
         if check:
             string_to_md(out, str(tex_path).replace(tex_path.suffix,'.md'))
         else:
