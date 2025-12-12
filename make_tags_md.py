@@ -41,7 +41,17 @@ def extract_indicators(text):
 
 # .md
 
-import re
+def unwrap_newlines_latex(text: str) -> str:
+
+    placeholder_end = "__END_ITEMIZE_NL__"
+    text = re.sub(fr'(\\end\{left_embrace}itemize\{right_embrace})([ \t]*)\n', r'\1\2' + placeholder_end, text)
+
+    pattern = re.compile(r'(?<!\n)\n(?!\n|\s*\\item|' + placeholder_end + r')')
+    text = pattern.sub(' ', text)
+
+    text = text.replace(placeholder_end, '\n')
+
+    return text
 
 def latex_itemize_to_md(text: str) -> str:
     pattern = re.compile(
@@ -105,8 +115,7 @@ def convert2md(t):
     t = t.replace(r'\(', '$').replace(r'\)', '$')
     t = t.replace(r'\og ', '"').replace(r' \fg{}', '"')
     t = t.replace(r'---', '—')
-    bp()
-    t = re.compile(r'(?<!\n)\n(?!\n|\\item)').sub(' ', t)
+    t = unwrap_newlines_latex(t)
     t = latex_itemize_to_md(t)
     return t
 
