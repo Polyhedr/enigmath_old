@@ -1,29 +1,24 @@
 ## Énoncé
 
-Vous avez été enfermés dans une prison formant un anneau parfait de $n$ cellules (vous ne connaissez pas $n$), toutes identiques, isolées, et chacune contenant exactement un prisonnier.
-Dans chaque cellule se trouvent un interrupteur et une ampoule, mais le câblage a été manifestement conçu par un ingénieur fou.
-Si, à midi pile, l’interrupteur d'une cellule est en position "on", alors l’ampoule de la cellule voisine (dans le sens horaire) émet un bref flash. Sinon, la lampe reste éteinte.
-
-Afin d’empêcher toute forme de communication, chaque nuit à minuit, le gardien diffuse du gaz anesthésiant dans tout l’anneau, remet tous les interrupteurs sur "off", et réarrange les prisonniers comme bon lui semble. Mais il garde une règle immuable : une personne par cellule.
-
-Un jour, le gardien entre dans votre cellule et vous lance un défi. Pour gagner votre liberté --- et celle de tous les autres --- une seule règle :
-à n’importe quel moment, n’importe quel prisonnier peut crier "Nous sommes $n$ prisonniers !"
-S’il dit vrai : tout le monde est libre.
-S’il se trompe : tout le monde est exécuté.
-
-Le gardien vous autorise à envoyer un unique message écrit à tous les autres prisonniers, dans lequel vous pouvez expliquer les règles et proposer un plan. Eux n’ont pas le droit de répondre.
-Naturellement, le gardien lira soigneusement votre note... et ensuite, il mélangera les prisonniers autant que nécessaire pour tenter de faire échouer votre stratégie.
-
+Une horde de 12 pirates doit se partager un trésor de 100 pièces d'or qu'ils viennent de dérober sur un navire. Ils décident de procéder comme ceci :
+   - Le plus vieux propose un partage.  
+   - Chaque pirate (y compris le plus vieux) vote pour dire s'il accepte ou pas le partage.  
+   - Si la majorité (supérieure ou égale) est d'accord, le partage est accepté.  
+   - Sinon, le plus vieux est exécuté et on recommence avec l'aîné des pirates restants. Ainsi de suite jusqu'à ce qu'un partage soit accepté.  
 
 **Questions :**
 
-1. 🌶️${}^{2.2}$  On admet que les prisonniers peuvent lancer des pièces, ce qui leur permet de prendre des décisions aléatoires que le gardien ne peut pas prévoir, même s’il connaît leur stratégie. Décrivez une stratégie permettant aux prisonniers de déterminer $n$ (presque sûrement).
+1. 🌶️${}^{1.4}$  Quel partage va proposer le plus vieux sachant que les pirates sont cupides, sadiques (même s'il n'ont rien à gagner de plus, il choisiront de vous exécuter) mais qu'en priorité ils souhaitent garder la vie sauve ?
 
 
-2. 🌶️${}^{2.9}$  Donnez une solution qui n’utilise aucune forme d’aléatoire et qui garantit d’aboutir en un nombre déterminé de jours.
+2. 🌶️${}^{1.9}$  Pour 208 pirates, l'aîné est-il sûr d'être exécuté quel que soit le partage qu'il propose ?
 
 
-3. 🌶️${}^{3.0}$  On suppose que la prison n’est plus circulaire, mais forme un graphe orienté fortement connexe, chaque cellule contenant au moins un interrupteur et une lumière, et chaque lumière étant contrôlée par exactement un interrupteur situé dans une autre cellule. Décrivez une stratégie permettant aux prisonniers de déterminer $n$.
+3. 🌶️${}^{2.3}$  Avec $N$ pirates et $G$ pièces d'or, tels que $N > 2G$, déterminez :
+       - quels pirates survivront,  
+   - quels pirates recevront des pièces d'or,  
+   - quels pirates ne recevront rien.  
+    Proposez une répartition possible des $G$ pièces d'or parmi les pirates survivants.
 
 
 &nbsp;

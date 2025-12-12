@@ -5,6 +5,7 @@ left_embrace = "{"
 right_embrace = "}"
 OK = [
 "L'échiquier du diable",
+#"La part du trésor",
 ]
 
 def extract_tags(tex):
@@ -39,37 +40,58 @@ def extract_indicators(text):
 
 # .md
 
-def convert_itemize_block(block: str) -> str:
-    """
-    Convert one LaTeX itemize block (content only) into Markdown bullets.
-    """
-    # Split on \item occurrences
-    items = re.split(r'\\item', block)
-    md_lines = []
-    for item in items:
-        line = item.strip()
-        if line:
-            md_lines.append(f"- {line}  ")
-    return "\n".join(md_lines)
+import re
 
 def latex_itemize_to_md(text: str) -> str:
-    """
-    Convert ALL LaTeX itemize environments inside a LaTeX document
-    into Markdown bullet lists.
-    """
-
-    # Regex to capture each block including begin/end lines
     pattern = re.compile(
-        r"\\begin\{itemize\}(.*?)\\end\{itemize\}",
-        re.DOTALL
+        r"\\begin\{itemize\}([\s\S]*?)\\end\{itemize\}",
+        re.MULTILINE
     )
 
-    def replacer(match):
-        content = match.group(1)
-        return convert_itemize_block(content)
+    def convert_block(block: str, indent_level: int = 0) -> str:
+        lines = block.strip().split("\n")
+        md = []
+        indent = "   " * indent_level
 
-    # Replace every itemize block
-    return pattern.sub(replacer, text)
+        nested_content = []
+
+        for line in lines:
+            # Look for nested itemize environments
+            if "\\begin{itemize}" in line:
+                # Start capturing nested block
+                nested_content.append(line)
+                continue
+
+            if nested_content:
+                nested_content.append(line)
+                # Check if this closes the nested environment
+                if "\\end{itemize}" in line:
+                    nested_block = "\n".join(nested_content)
+                    # Recursively convert nested block
+                    nested_md = replace_nested(nested_block, indent_level + 1)
+                    md.append(nested_md)
+                    nested_content = []
+                continue
+
+            # Detect items
+            if "\\item" in line:
+                content = re.sub(r"\\item\s*", "", line).strip()
+                md.append(f"{indent}- {content}  ")
+            else:
+                # Continuation of previous item (rare)
+                stripped = line.strip()
+                if stripped:
+                    md.append(f"{indent}  {stripped}")
+        return "\n".join(md)
+
+    def replace_nested(match, level=0):
+        content = match.group(1)
+        return convert_block(content, level)
+
+    # Repeatedly replace the innermost itemize blocks
+    while pattern.search(text):
+        text = pattern.sub(lambda m: replace_nested(m, 1), text)
+    return text
 
 def string_to_md(text, outfile="output.md"):
     Path(outfile).write_text(text, encoding="utf-8")
