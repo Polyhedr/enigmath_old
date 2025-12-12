@@ -24,16 +24,21 @@ def extract_first_enumerate(tex):
     return tex[start:end]
 
 def split_items(enumerate_block):
-    # split on occurrences of \item (at line starts possibly with whitespace)
     parts = re.split(r'(?m)^\s*\\item\b', enumerate_block)
-    # first split part before the first \item is usually empty -> discard
-    items = [p for p in parts if p.strip() != '']
-    return items
+    parts = [re.split(r'\\item\b', p)[0] for p in parts]
+    return [p for p in parts if p.strip() != '']
 
-def count_emoji_in_item(item, name):
-    # counts occurrences of \emoji{<name>} exactly
-    pattern = re.compile(r'\\emoji\{\s*' + re.escape(name) + r'\s*\}')
-    return len(pattern.findall(item))
+def count_emoji_in_item(item, emoji_type):
+    m = re.search(r'\\indicators\{([0-9.]+)\}\{([0-9.]+)\}', item)
+    if not m:
+        return 0.0
+    difficulty, coding = m.groups()
+    if emoji_type == 'hot-pepper':
+        return float(difficulty)
+    elif emoji_type == 'laptop':
+        return float(coding)
+    else:
+        return 0.0
 
 def extract_tags(tex):
     """
@@ -77,17 +82,17 @@ def main():
             continue
 
         # emoji counts
-        laptop_counts = [count_emoji_in_item(it, 'laptop') for it in question_items]
         hotpep_counts = [count_emoji_in_item(it, 'hot-pepper') for it in question_items]
+        laptop_counts = [count_emoji_in_item(it, 'laptop') for it in question_items]
 
-        total_laptop = sum(laptop_counts)
         total_hotpep = sum(hotpep_counts)
+        total_laptop = sum(laptop_counts)
 
-        mean_laptop = total_laptop / n_questions
         mean_hotpep = total_hotpep / n_questions
+        mean_laptop = total_laptop / n_questions
 
-        mean_laptop_str = format_number(mean_laptop)
         mean_hotpep_str = format_number(mean_hotpep)
+        mean_laptop_str = format_number(mean_laptop)
 
         # tags
         tags = extract_tags(tex)
@@ -96,8 +101,8 @@ def main():
         out_path = tex_path.parent / "tags.txt"
 
         out_lines = []
-        out_lines.append(mean_laptop_str)
         out_lines.append(mean_hotpep_str)
+        out_lines.append(mean_laptop_str)
         out_lines.extend(tags)
 
         out_path.write_text("\n".join(out_lines) + "\n", encoding='utf-8')

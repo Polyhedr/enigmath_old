@@ -34,12 +34,14 @@ stringstyle=\color{red},
 showstringspaces=false,
 breaklines=true
 }
+\usepackage{ifthen}
+\newcommand{\indicators}[2]{%
+  \emoji{hot-pepper}${}^{#1}$%
+  \ifthenelse{#2>0}{\emoji{laptop}${}^{#2}$}{}%
+}
 
-%\usepackage{qrcode}
-%\usepackage{array}
-%\usepackage{tabularx}
 \begin{document}
-%\input{enigmes/idemia.tex}
+
 
 
 

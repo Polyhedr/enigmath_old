@@ -45,16 +45,14 @@ if (fs.existsSync(tagsFile)) {
       .map((t) => t.trim())
       .filter((t) => t.length > 0);
 
-    // First element → computer
     if (parts.length >= 1) {
       const n = Number(parts[0]);
-      if (!isNaN(n)) computer = n;
+      if (!isNaN(n)) difficulty = n;
     }
 
-    // Second element → difficulty
     if (parts.length >= 2) {
       const n = Number(parts[1]);
-      if (!isNaN(n)) difficulty = n;
+      if (!isNaN(n)) computer = n;
     }
 
     // Remaining elements → tags
@@ -70,8 +68,8 @@ if (fs.existsSync(tagsFile)) {
       src: imageFile ? `/enigmas/${encodeURIComponent(folder)}/${encodeURIComponent(imageFile)}` : "",
       width: 720,
       height: 480,
-      computer,
       difficulty,
+      computer,
       tags,
     };
   });
