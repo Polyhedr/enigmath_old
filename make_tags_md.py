@@ -8,6 +8,8 @@ OK = [
 "La part du trésor",
 "La prison circulaire de taille inconnue",
 "Le défi des trois dés",
+"Les trois dieux",
+"Les âges des trois enfants",
 ]
 
 def extract_tags(tex):
@@ -152,6 +154,7 @@ def main():
         hotpep, laptop = extract_indicators(text)
 
         # create the .md
+        text = re.sub(r'\\item\s+\\indicators', r'\\item\\indicators', text)
         S,Q = text.split("{Questions}")
         out = convert2md(S)
         out += '\n\n**Questions :**\n\n'
