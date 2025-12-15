@@ -16,6 +16,7 @@ interface EnigmaData {
   src: string;
   text: string;
   folderName: string;
+  title: string;
 }
 
 const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
@@ -95,18 +96,26 @@ const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
       const srcPng = `${basePath}/image.png`;
 
       const src =
-        (await fetch(srcJpg, { method: "HEAD" })
-          .then((res) => res.ok)
-          .catch(() => false))
+        (await fetch(srcJpg, { method: "HEAD" }).then(res => res.ok).catch(() => false))
           ? srcJpg
           : srcPng;
 
-      setActiveEnigma({ src, text, folderName });
+      // find preloaded image data
+      const preloaded = images.find(img => img.folderName === folderName);
+
+      setActiveEnigma({
+        src,
+        text,
+        folderName,
+        title: preloaded?.title || folderName,
+      });
+
       window.history.pushState({ enigma: folderName }, "", `#${encodeURIComponent(folderName)}`);
     } catch (err) {
       console.error("Failed to load enigma:", err);
     }
   };
+
 
   // ---------------- Open from URL hash ----------------
   useEffect(() => {
@@ -152,7 +161,7 @@ const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
   // ---------------- Filter images ----------------
   const filteredImages = images.filter((img) => {
     const query = searchQuery.toLowerCase();
-    const titleMatch = img.folderName?.toLowerCase().includes(query) ?? false;
+    const titleMatch = img.title?.toLowerCase().includes(query) ?? false;
     const tagsMatch = img.tags?.some((tag) => tag.toLowerCase().includes(query)) ?? false;
     return titleMatch || tagsMatch;
   });
@@ -214,7 +223,7 @@ const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
 {/* Top-right indicators */}
 <div className="absolute top-0 right-0 flex gap-2 whitespace-nowrap text-sm font-semibold">
   {typeof img.difficulty === "number" && (
-    <span className="text-yellow-300">
+    <span className="text-red-300">
       🌶️<sup>{img.difficulty.toFixed(1)}</sup>
     </span>
   )}
@@ -227,7 +236,7 @@ const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
 
     {/* Title with padding to avoid overlap */}
     <div className="pr-28 text-lg font-semibold leading-tight line-clamp-2">
-      {img.folderName}
+      {img.title}
     </div>
 
   </div>
@@ -261,7 +270,7 @@ const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
         >
           {/* Header */}
           <div className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 gap-4 border-b bg-white border-gray-300">
-            <h2 className="text-lg font-semibold">{activeEnigma.folderName}</h2>
+            <h2 className="text-lg font-semibold">{activeEnigma.title}</h2>
             <div className="flex gap-2">
               
               {/* Download */}
@@ -384,13 +393,35 @@ export async function getStaticProps() {
   const localImages = await getResults();
 
   const images: ImageProps[] = await Promise.all(
-    localImages.map(async (img) => ({
-      ...img,
-      folderName: img.folderName,
-      tags: img.tags ?? [],
-      blurDataUrl: await getBase64ImageUrl(img),
-    }))
+    localImages.map(async (img) => {
+      // fetch and parse tags.txt
+      let title = img.folderName;
+      let difficulty: number | undefined;
+      let computer: number | undefined;
+      let tags: string[] = [];
+
+      try {
+        const raw = await fetch(`/enigmas/${encodeURIComponent(img.folderName)}/tags.txt`).then(res => res.text());
+        const parts = raw.split(/[\n,]/).map(t => t.trim()).filter(Boolean);
+        difficulty = Number(parts[0]) || undefined;
+        computer = Number(parts[1]) || undefined;
+        title = parts[2] || img.folderName;
+        tags = parts.slice(3);
+      } catch (err) {
+        console.warn(`No tags.txt for ${img.folderName}`);
+      }
+
+      return {
+        ...img,
+        title,
+        difficulty,
+        computer,
+        tags,
+        blurDataUrl: await getBase64ImageUrl(img),
+      };
+    })
   );
 
   return { props: { images } };
 }
+

@@ -1,0 +1,242 @@
+%logique épistémique
+%arithmétique
+\section*{Les âges des trois enfants}
+\label{Les âges des trois enfants}
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{\currfiledir/image.png}
+\end{center}
+\subsection*{Énoncé}
+Monsieur A rencontre par hasard dans la rue son vieil ami, monsieur B. Après quelques salutations futiles, on assiste à la conversation suivante :
+\begin{itemize}
+\item[B] : Tu as des enfants ?
+\item[A] : Oui, j'en ai trois !
+\item[B] : Quels âges ont-ils ?
+\end{itemize}
+
+Monsieur A qui aime les énigmes, réfléchit un peu et répond :
+\begin{itemize}
+\item[A] : Le produit de leur âge donne 36
+\item[B] : OK, mais tu dois me donner un peu plus d'indications...
+\end{itemize}
+Monsieur A montre alors quelque-chose du doigt, et dit :
+\begin{itemize}
+\item[A] : Tu vois le nombre sur le panneau là-bas ? Et bien, c'est la somme de leur âge
+\item[B] : Très bien... mais je ne peux toujours pas trouver...
+\item[A] : L'aîné est un garçon.
+\item[A] : J'ai trouvé !
+\end{itemize}
+\medskip
+\textbf{Questions} :
+\begin{enumerate}
+    \item\indicators{1.0}{0.6} Quels âge ont les enfants de Monsieur A ? 
+    \item\indicators{1.2}{1.6} Existe-t-il une autre valeur du produit $N$, différente de $36$, conduisant à la même énigme ? 
+Si oui, listez ces nombres jusqu'à $100$. 
+Un tel $N$ est appelé Nombre Triplement Curieux (NTC), et les triplets $\{a, b, c\}$ et $\{d, e, f\}$ tels que
+\(
+abc = def = N
+\)
+sont les triplets mystérieux.
+    \item\indicators{1.4}{0} Montrez que les triplets mystérieux d'un NTC ne peuvent pas avoir d’élément en commun.
+    \item\indicators{1.5}{0} Montrez qu’un NTC n’est jamais une puissance d’un nombre premier.
+    \item\indicators{1.6}{0} Montrer que tout NTC s’écrit comme un produit d’au moins quatre nombres premiers (pas nécessairement distincts).
+    \item\indicators{1.9}{0} Soit $p$ un nombre premier tel que $2p - 1$ soit également premier.  
+Montrer que
+\(
+N = p^2 (2p - 1)^2
+\)
+est un NTC.
+
+\end{enumerate}
+\subsection*{Solution}
+\begin{enumerate}
+    \item On note $x,y,z$ les âges des trois enfants de Monsieur A, et on fait l'hypothèse que $x\le y\le z$. Comme le produit est égal à $36$, on a l'ensemble des cas suivants possible pour le triplet $(x,y,z)$:
+$$
+(1,1,36), (1,2,18), (1,3,12),(1,4,9),(1,6,6), (2,2,9), (2,3,6),(3,3,4)
+$$
+Comme il existe au moins deux triplets différents, il est normal que Monsieur B n'ait pas pu deviner tout de suite. Le numéro sur le panneau correspond à l'une des sommes d'un de ces triplets. Pour chacun des triplets ci-dessus, on obtient les sommes suivantes : 
+$$
+38,21,16,14,13,13,11,10.
+$$
+Comme Monsieur B n'a pas pu deviner en voyant le panneau, c'est nécessairement que ce numéro correspond à la seule somme (13) qui apparaît au moins deux fois, et les âges des enfants de Monsieur A sont donc soit $(1,6,6)$ soit $(2,2,9)$. 
+
+Lorsque Monsieur A dit "l'aîné est un garçon" c'est que ça ne peut pas être le triplet $(1,6,6)$ car sinon il resterait une ambiguïté. Les enfants de Monsieur A ont donc 2,2 et 9 ans.
+    
+\item Le code Python ci-dessous permet de générer la liste des NTC jusqu'à $100$ et leurs triplets mystérieux :
+
+\begin{lstlisting}
+(*@\codeheader{\currfiledir/1.py}@*)
+(*@ @*)
+\end{lstlisting}
+\vspace{-.455cm}
+\lstinputlisting{\currfiledir/1.py}
+
+Ce code fournit le tableau suivant :
+
+\[
+\begin{array}{cccc}
+N & \text{Somme des triplets} & \{a,b,c\} & \{d,e,f\} \\
+\hline
+36 & 13 & (1,6,6) & (2,2,9) \\
+40 & 14 & (1,5,8) & (2,2,10) \\
+72 & 14 & (2,6,6) & (3,3,8) \\
+96 & 21 & (1,8,12) & (2,3,16) \\
+\end{array}
+\]
+
+Ainsi, en plus de $36$, les autres NTC jusqu'à $100$ sont $40$, $72$ et $96$.
+\item \label{Montrer que tout NTC s’écrit comme un produit d’au moins quatre nombres premiers}
+Soient $\{a, b, c\}$ et $\{d, e, f\}$ les triplets mystérieux d’un NTC.  
+Supposons que $a = d$.  
+D’après les conditions de somme et de produit, nous avons :
+\[
+f - c = b - e \quad \text{et} \quad b c = e f.
+\]
+En utilisant
+\[
+b c = e c + c(b - e) \quad \text{et} \quad e f = e c + e(f - c) = e c + e(b-e),
+\]
+nous obtenons :
+\[
+c(b - e) = e(b - e),
+\]
+ce qui implique que $b = e$ ou $c = e$.  
+\begin{itemize}
+    \item Si $b = e$, alors $c = f$. \item Si $c = e$, alors $b = f$.
+\end{itemize}
+Dans les deux cas, nous obtenons $\{a, b, c\} = \{d, e, f\}$, ce qui contredit le fait que les deux triplets doivent être distincts.  
+\item
+Supposons, par l’absurde, que $N = p^n$ soit un NTC, où $p$ est un nombre premier et $n$ un entier positif.  
+Comme tout diviseur de $N$ est aussi une puissance de $p$, on peut écrire les deux triplets mystérieux sous la forme :
+\[
+\{p^r, p^s, p^t\} \quad \text{et} \quad \{p^u, p^v, p^w\}
+\]
+avec
+\[
+r \ge s \ge t, \quad u \ge v \ge w, \quad n = r+s+t = u+v+w, \quad t > w.
+\]
+D’après la condition de somme des triplets, on obtient l’équation
+\begin{equation*}
+p^{\,t-w}\,(p^{\,r-t} + p^{\,s-t} + 1) = p^{\,u-w} + p^{\,v-w} + 1.
+\end{equation*}
+Or, le côté gauche est divisible par $p$.  
+\begin{itemize}
+    \item Si $p \neq 3$, le côté droit n’est pas divisible par $p$, ce qui est une contradiction.  
+    \item Si $p = 3$, le côté droit n’est divisible par $p$ que si $u = v = w$, ce qui impliquerait que le côté droit vaut exactement $3$, tandis que le côté gauche est au moins $9$, ce qui est également impossible. 
+\end{itemize}
+\item
+D’après la question~\ref{Montrer que tout NTC s’écrit comme un produit d’au moins quatre nombres premiers}, il suffit de montrer qu’un NTC n’est pas le produit de exactement trois nombres premiers.  
+
+Supposons que $N = p q r$ soit un NTC, où $p, q, r$ sont des nombres premiers avec $p \ge q \ge r$.  
+
+Alors il n’existe que cinq triples possibles pour $N$, à savoir :
+\[
+\{p q r, 1, 1\}, \quad \{p q, r, 1\}, \quad \{p r, q, 1\}, \quad \{q r, p, 1\} \text{ ou } \{p, q r, 1\}, \quad \{p, q, r\}.
+\]
+
+D’après la question précédente, la seule paire possible de triplets mystérieux est 
+\[
+\{p q r, 1, 1\} \text{ et } \{p, q, r\}.
+\]
+
+Cependant, comme
+\[
+p + q + r < p q r + 2,
+\]
+cette paire ne satisfait pas la condition de somme.
+
+\item 
+Le tableau suivant présente les huit triples possibles de $N$ :
+\[
+\begin{array}{c|c}
+\text{triplets}&  \text{somme}\\ \hline
+\{p^2(2p-1)^2, 1, 1\} & 4p^4 - 4p^3 + p^2 + 2 \\
+\{p(2p-1)^2, p, 1\} & 4p^3 - 4p^2 + 2p + 1 \\
+\{p^2(2p-1), 2p-1, 1\} & 2p^3 - p^2 + 2p \\
+\{(2p-1)^2, p^2, 1\} & 5p^2 - 4p + 2 \\
+\{p(2p-1), p(2p-1), 1\} & 4p^2 - 2p + 1 \\
+\{p(2p-1), 2p-1, p\} & 2p^2 + 2p - 1 \\
+\{(2p-1)^2, p, p\} & 4p^2 - 2p + 1 \\
+\{p^2, 2p-1, 2p-1\} & p^2 + 4p - 2
+\end{array}
+\]
+En utilisant les lemmes suivant, les sommes des triples peuvent être ordonnées de la plus grande à la plus petite selon les inégalités suivantes :
+\begin{align*}
+4p^4 - 4p^3 + p^2 + 2 &> 4p^3 - 4p^2 + 2p + 1 \\&> 2p^3 - p^2 + 2p \\&> 5p^2 - 4p + 2 \\&> 4p^2 - 2p + 1 \\&> 2p^2 + 2p - 1 \\&> p^2 + 4p - 2.
+\end{align*}
+
+Ainsi, la condition de somme est satisfaite par exactement deux triples distincts et la condition de produit est automatiquement vérifiée.  
+
+\begin{lemma}  
+Pour tout réel $x \neq 1$, les inégalités suivantes sont vérifiées :
+\begin{align*}
+\text{(i)}\quad &4x^{4} - 4x^{3} + x^{2} + 2 \;>\; 4x^{3} - 4x^{2} + 2x + 1,\\
+\text{(ii)}\quad &5x^{2} - 4x + 2 \;>\; 4x^{2} - 2x + 1,\\
+\text{(iii)}\quad &4x^{2} - 2x + 1 \;>\; 2x^{2} + 2x - 1,\\
+\text{(iv)}\quad &2x^{2} + 2x - 1 \;>\; x^{2} + 4x - 2.
+\end{align*}
+\end{lemma}
+
+\begin{proof}  
+On observe que
+\[
+4x^{4} - 4x^{3} + x^{2} + 2
+= 4x^{3} - 4x^{2} + 2x + 1 \;+\; (4x^{2} + 1)(x - 1)^{2}.
+\]
+Or, comme $(4x^{2} + 1)(x - 1)^{2} > 0$ pour tout $x \neq 1$, l’inégalité $(i)$ en découle immédiatement.
+
+Pour les autres inégalités, il suffit d’utiliser les identités suivantes :
+\[
+5x^{2} - 4x + 2 = 4x^{2} - 2x + 1 + (x - 1)^{2},
+\]
+\[
+4x^{2} - 2x + 1 = 2x^{2} + 2x - 1 + 2(x - 1)^{2},
+\]
+\[
+2x^{2} + 2x - 1 = x^{2} + 4x - 2 + (x - 1)^{2}.
+\]
+Comme $(x - 1)^{2} > 0$ pour tout $x \neq 1$, les inégalités $(ii)$, $(iii)$ et $(iv)$ en résultent. 
+\end{proof}
+
+\begin{lemma} Pour tout réel \(x>1\), on a
+\[
+2x^{3}-x^{2}+2x \;>\; 5x^{2}-4x+2.
+\]
+\end{lemma}
+
+\begin{proof} Soit $x>1$. On considère la différence entre les deux membres :
+\begin{align*}
+(2x^{3}-x^{2}+2x)-(5x^{2}-4x+2)
+&=2x^{3}-6x^{2}+6x-2
+\\&=
+2(x-1)^{3}>0.
+\end{align*}
+\end{proof}
+
+\begin{lemma} Pour tout réel \(x\) tel que \(x>-\tfrac{1}{2}\) et \(x\neq 1\), on a
+\[
+4x^{3}-4x^{2}+2x+1 \;>\; 2x^{3}-x^{2}+2x.
+\]
+\end{lemma}
+
+\begin{proof} Considérons la différence entre les deux membres :
+\[
+\bigl(4x^{3}-4x^{2}+2x+1\bigr)-\bigl(2x^{3}-x^{2}+2x\bigr)
+=(x-1)^{2}(2x+1).
+\]
+Pour \(x>-\tfrac{1}{2}\) et \(x\neq 1\) on a \(2x+1>0\), et \((x-1)^{2} > 0\).
+\end{proof}
+
+\end{enumerate}
+
+\subsection*{Notes et références}
+Le problème des âges des trois enfants (parfois appelé \emph{Census-Taker Problem} \cite{garces2012revisiting}) est une énigme dite \emph{de connaissance} 
+(c'est-à-dire une énigme dans laquelle la solution dépend de ce que les participants savent ou ignorent, 
+et de la manière dont cette information est partagée ou déduite entre eux), 
+qui, à première vue, semble ne pas contenir suffisamment d'informations pour être résolue. 
+
+Un problème connexe a été étudié par \cite{kelly1964partitions}, qui a montré que, pour tout entier $M > 18$, il existe des triplets ayant la même somme $M$ et des produits égaux (non spécifiés). Bien que ce problème puisse être considéré comme le dual du problème du \emph{census-taker}, il ne prend pas en compte la condition d'unicité selon laquelle il doit y avoir exactement deux triplets avec des produits égaux.
+
+Un autre problème connexe est celui de \emph{l'anniversaire de Cheryl} (\emph{Cheryl's Birthday} \cite{van2017cheryl}), où l'objectif est de déterminer la date d'anniversaire d'une jeune fille nommée Cheryl à partir d'indices donnés à ses amis Albert et Bernard. Ce problème a été posé lors de l'Olympiade de mathématiques SASMO 2015 et est rapidement devenu viral, étant diffusé à la télévision dans le monde entier.
+
+\bibliography{\currfiledir/sources.bib}
+\newpage

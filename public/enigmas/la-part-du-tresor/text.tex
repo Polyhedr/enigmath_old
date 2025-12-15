@@ -1,0 +1,106 @@
+%logique
+%théorie des jeux
+\section*{La part du trésor}
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{\currfiledir/image.png}
+\end{center}
+\subsection*{Énoncé}
+Une horde de 12 pirates doit se partager un trésor de 100 pièces d'or qu'ils viennent de dérober sur un navire. Ils décident de procéder comme ceci :
+\begin{itemize}
+\item Le plus vieux propose un partage.
+\item Chaque pirate (y compris le plus vieux) vote pour dire s'il accepte ou pas le partage.
+\item Si la majorité (supérieure ou égale) est d'accord, le partage est accepté.
+\item Sinon, le plus vieux est exécuté et on recommence avec l'aîné des pirates restants. Ainsi de suite jusqu'à ce qu'un partage soit accepté. 
+\end{itemize}
+\medskip
+\textbf{Questions} :
+\begin{enumerate}
+\item\indicators{1.4}{0} Quel partage va proposer le plus vieux sachant que les pirates sont cupides, sadiques (même s'il n'ont rien à gagner de plus, il choisiront de vous exécuter) mais qu'en priorité ils souhaitent garder la vie sauve ?
+\item\indicators{1.9}{0} Pour 208 pirates, l'aîné est-il sûr d'être exécuté quel que soit le partage qu'il propose ?
+\item\indicators{2.3}{0} Avec $N$ pirates et $G$ pièces d'or, tels que $N > 2G$, déterminez :
+    \begin{itemize}
+        \item quels pirates survivront,
+        \item quels pirates recevront des pièces d'or,
+        \item quels pirates ne recevront rien.
+    \end{itemize}
+    Proposez une répartition possible des $G$ pièces d'or parmi les pirates survivants.
+\end{enumerate}
+\subsection*{Solution}
+\begin{enumerate}
+    \item On détermine la stratégie en fonction du nombre de pirates restants :
+\begin{center}
+\begin{tabular}{c|cccccccccccc}
+Nombre de pirates restants & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
+\hline
+1 & 100 & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} \\
+2 & 0 & 100 & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} \\
+3 & 1 & 0 & 99 & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} \\
+4 & 0 & 1 & 0 & 99 & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} \\
+5 & 1 & 0 & 1 & 0 & 98 & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} \\
+6 & 0 & 1 & 0 & 1 & 0 & 98 & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} \\
+7 & 1 & 0 & 1 & 0 & 1 & 0 & 97 & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} \\
+8 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 97 & \emoji{skull} & \emoji{skull} & \emoji{skull} & \emoji{skull} \\
+9 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 96 & \emoji{skull} & \emoji{skull} & \emoji{skull} \\
+10 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 96 & \emoji{skull} & \emoji{skull} \\
+11 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 95 & \emoji{skull} \\
+12 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 95 \\
+\end{tabular}
+\end{center}
+\begin{itemize}
+    \item Pour 2 pirates : le plus ancien (le pirate \#2) prend tout pour lui.
+    \item Pour 3 pirates : le pirate \#2 votera contre le plan quoi qu'il arrive (car il sait qu'il gagnera les 100 pièces au tour suivant). Le pirate \#3 donne donc une pièce au pirate \#1 (qui va accepter car il sait qu'il gagnera 0 pièce au tour suivant), rien au pirate \#2, et garde le reste pour lui.
+    \item Pour 4 pirates : Le pirate \#4 donne une pièce au pirate \#2 (qui va accepter car il sait qu'il gagnera 0 pièce au tour suivant),  etc.
+\end{itemize}
+
+\item À chaque étape, le pirate le plus âgé est désigné comme capitaine.
+\begin{itemize}
+    \item Le pirate \#201, en tant que capitaine, peut rester en vie uniquement en offrant \emph{une pièce d’or à chacun des 100 pirates les plus jeunes ayant un numéro impair}, et en ne gardant rien pour lui-même.
+    \item Le pirate \#202, en tant que capitaine, ne peut rester en vie qu’en donnant une pièce d’or à 100 pirates qui n’auraient pas reçu de pièce du pirate \#201. Cela crée 101 destinataires possibles : les 100 pirates pairs jusqu’au pirate \#200, ainsi que le pirate \#201. Comme il n’y a pas de contrainte sur le choix des 100 destinataires parmi ces 101, tout choix est possible. 
+    \item Le pirate \#203, en tant que capitaine, ne dispose plus de suffisamment de pièces pour soudoyer une majorité de pirates. Il ne peut donc pas obtenir le vote favorable nécessaire et sera nécessairement exécuté.
+    \item Le pirate \#204, en tant que capitaine, a le vote du pirate \#203 assuré sans avoir à le soudoyer : le pirate \#203 ne survivra que si le pirate \#204 survit également. Ainsi, le pirate \#204 peut rester en vie en obtenant 102 votes (en soudoyant 100 pirates avec une pièce d'or chacun + les 2 votes des pirates \#203 et \#204). La stratégie la plus simple consiste probablement à soudoyer les pirates de rang impair, en incluant éventuellement le pirate \#202, qui ne recevra rien du pirate \#203. Il est toutefois possible de soudoyer d'autres pirates, puisque ceux-ci n'ont qu'une probabilité de 100/101 de recevoir une pièce du pirate \#202. 
+    \item Avec 205 pirates, tous les pirates sauf le pirate \#205 préfèrent tuer le pirate \#205 à moins qu'on leur offre de l'or. Par conséquent, le pirate \#205 est condamné en tant que capitaine. 
+    \item De même, avec 206 ou 207 pirates, seuls les votes de survie du pirate \#205 envers le pirate \#206 ou le pirate \#207 sont assurés sans pièces d'or, ce qui ne suffit pas pour atteindre la majorité ; les pirates \#206 et \#207 sont donc également condamnés.  
+    \item Pour 208 pirates, les votes de survie des pirates \#205, \#206 et \#207 sans aucune pièce d'or sont suffisants pour permettre au pirate \#208 d'obtenir 104 votes et de rester en vie.
+\end{itemize}
+
+%\item On montre par récurrence l'énoncé suivant sur le nombre $n$ de pirates.  On numerote les pirates par âge croissant. Soit $n\le 200$? Si $n$ est pair (impair), alors le plus vieux propose aux pirates pairs (impairs, respectivement) de recevoir une pièce chacun et de s'attribuer à lui les pièces restantes. C'est vrai pour $n=1$. Si 
+
+\item \label{Avec $N$ pirates et $G$ pièces d'or}
+Règle générale pour $N$ pirates et $G$ pièces d'or, avec $N > 2G$ :
+
+\begin{itemize}
+    \item Tous les pirates dont le numéro est inférieur ou égal à $2G + M$ survivront, où $M$ est la plus grande puissance de 2 ne dépassant pas $N - 2G$.
+    \item Tous les pirates dont le numéro est supérieur à $2G + M$ mourront.
+    \item Tout pirate dont le numéro est supérieur à $2G + M/2$ ne recevra aucune pièce d'or.
+    \item Il n’existe pas de solution unique pour déterminer quels pirates reçoivent une pièce d’or si le nombre de pirates est supérieur ou égal à $2G + 2$. Une solution simple consiste à donner une pièce aux pirates d’ordre pair ou impair jusqu’à $2G$, selon que $M$ est une puissance de 2 paire ou impaire.
+\end{itemize}
+
+\medskip
+
+\textbf{Explication complémentaire :}
+
+Chaque pirate $M$ dispose du vote de tous les pirates de $M/2 + 1$ à $M$ par survie personnelle, car leur survie dépend de celle du pirate $M$. Comme le capitaine peut toujours trancher en cas d’égalité, il n’a besoin que des votes de la moitié des pirates au-delà de $2G$. Cette situation se produit chaque fois que le nombre de pirates atteint $2G + \text{une puissance de 2}$.
+
+\medskip
+
+\textbf{Exemple :} avec $G = 100$ pièces et $N = 500$ pirates :
+\begin{itemize}
+    \item Les pirates \#500 à \#457 sont condamnés.
+    \item Le pirate \#456 survit, car il bénéficie des 128 votes garantis par les pirates \#329 à \#456 (survie par auto-préservation), plus 100 votes des pirates qu’il soudoye, pour un total de 228 votes nécessaires.
+    \item Les numéros de pirates au-delà de \#200 qui peuvent garantir leur survie en tant que capitaine avec 100 pièces sont : \#201, \#202, \#204, \#208, \#216, \#232, \#264, \#328, \#456, \#712, etc. Ces pirates sont séparés par des groupes de plus en plus longs de pirates condamnés, indépendamment du partage proposé.
+\end{itemize}
+
+
+\end{enumerate}
+
+\subsection*{Notes et références}
+Le \emph{jeu du pirate} est un jeu mathématique simple qui illustre comment, lorsque le comportement des participants suit le modèle de l'\emph{homo œconomicus}\footnote{Le modèle standard de l'homo œconomicus postule que les individus poursuivent leur intérêt matériel individuel et agissent de manière rationnelle pour atteindre leurs objectifs.}, l'issue d'un jeu peut être surprenante. 
+
+Il constitue une version multijoueur du \emph{jeu de l'ultimatum} : un premier joueur (joueur A) reçoit une somme d'argent et doit décider quelle part il conserve et quelle part il attribue à un second joueur (joueur B). Le joueur B doit alors accepter ou refuser l'offre. En cas de refus, aucun des deux joueurs ne reçoit d'argent. 
+Selon le modèle théorique, le joueur B devrait accepter toute offre strictement positive, et le joueur A, anticipant cette réponse, devrait proposer la plus petite offre positive possible. Ces prédictions sont rarement observées en pratique. De nombreux chercheurs, notamment des économistes comportementaux, ont utilisé ce jeu pour étudier le rôle de la justice et de la réciprocité dans les interactions sociales. Certains ont cependant souligné le caractère artificiel de l'expérience et émis l'hypothèse qu'un phénomène d'apprentissage pourrait amener les participants à modifier leur comportement avec le temps \cite{gale1995learning}.
+
+La question~\ref{Avec $N$ pirates et $G$ pièces d'or} vient d'un article de Ian Stewart sur l'ajout d'un nombre arbitraire de pirates \cite{stewart1999mathematical}.
+
+
+\bibliography{\currfiledir/sources.bib}
+\newpage

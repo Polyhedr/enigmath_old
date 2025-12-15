@@ -8,6 +8,7 @@ export interface ImageProps {
   folderName?: string;
   difficulty?: number;
   computer?: number; 
+  title?: string;
   tags?: string[];
 }
 
