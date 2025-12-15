@@ -1,0 +1,175 @@
+%géométrie
+%optimisation
+\section*{Quadrivillage}
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{\currfiledir/image.png}
+\end{center}
+\subsection*{Énoncé}
+Le village de Quadrivillage est organisé selon un quadrillage de rues.  
+À certaines intersections se trouve une maison, pour un total de $n$ maisons dans le village (chaque maison abrite exactement un habitant).  
+Le maire souhaite construire une Grande Allée : une route traversant le village en ligne droite, de façon oblique.  
+Son objectif est de placer cette route de manière à réduire au maximum le temps de trajet des habitants pour s’y rendre.
+
+\medskip
+\textbf{Questions} :
+\begin{enumerate}
+\item\indicators{0.4}{0} En supposant que les habitants se déplacent uniquement le long des rues du quadrillage, 
+déterminez, pour une Grande Allée donnée, le temps de trajet d'un habitant jusqu'à celle-ci. 
+\item\indicators{2.1}{0} Proposez un algorithme en temps  quasi-quadratique en $n$, 
+permettant de déterminer la position optimale de la Grande Allée, 
+de manière à minimiser la somme des temps de trajet de tous les habitants 
+jusqu’à celle-ci.
+\item \indicators{2.5}{0} Avant le début de la construction, plusieurs villages voisins (organisés eux aussi en quadrillage) souhaitent 
+bâtir leur Grande Allée selon le même objectif. Cependant, selon la tradition locale, toutes ces Grandes Allées doivent  
+être parallèles entre elles. Les maires se réunissent donc pour déterminer conjointement la position optimale 
+de chaque Grande Allée. Si l'on considère $d$ villages et $n$ habitants par village, décrivez un algorithme  
+de complexité $\mathcal O(dn^2\log(dn))$ permettant de résoudre ce problème de minimisation. 
+\end{enumerate}
+\subsection*{Solution}
+\begin{enumerate}
+\item La Grande Allée est modélisée par une droite d’équation $y = ax + b$, avec $(a,b)\in \mathbb{R}^2$.  
+Si l’on note $(x_i, y_i)$ la position de la $i$-ème maison, le temps de trajet jusqu’à la route est donné par la plus petite distance horizontale ou verticale :  
+\[
+\min\big(\lvert ax_i + b - y_i \rvert , \lvert x_i - a^{-1}(y_i - b) \rvert \big)
+=\lvert ax_i + b - y_i \rvert \cdot \min\big(1,\lvert a\rvert^{-1}\big).
+\]
+    \item\label{Proposez un algorithme en temps  quasi-quadratique} 
+Le problème global se ramène à la minimisation suivante :
+\[
+\min_{a,b}
+\sum_{i=1}^n \lvert ax_i+b-y_i\rvert \cdot \min\big(1,\lvert a\rvert^{-1}\big)
+=
+  \min\Bigg( \min_{a,b}\sum_{i=1}^n \lvert ax_i+b-y_i\rvert , 
+\min_{a,b}\sum_{i=1}^n \big\lvert x_i - a^{-1}(y_i-b) \big\rvert \Bigg).
+\]
+
+Autrement dit, il suffit de résoudre les deux cas (tous les habitants se raccordent horizontalement ou tous les habitants se raccordent verticalement) et de retenir le plus favorable.  
+De plus, en échangeant le rôle des $x_i$ et des $y_i$, et en effectuant le changement de variables $(a,b) \mapsto (1/a,\,-b/a)$, le second problème se ramène au premier.  
+En conclusion, on veut déterminer la droite d’équation $y=ax+b$ qui minimise :
+\[
+\min_{a,b} \sum_{i=1}^n \lvert ax_i+b-y_i\rvert.
+\]
+Pour ce faire, introduisons d’abord la notion de médiane.
+\begin{definition}
+    Soient $(x_j) \in \mathbb{R}^n$ et $(w_j) \in \mathbb{R}^n_+$.  
+    Une médiane de $(x_j)$ avec poids $(w_j)$ est tout réel
+    \[
+        m \in \arg\min_{t \in \mathbb{R}} \sum_{j=1}^n w_j \, |x_j - t|.
+    \]
+\end{definition}
+\begin{lemma}
+    Soient $(x_j) \in \mathbb{R}^n$ et $(w_j) \in \mathbb{R}^n_+$.  
+    Alors il existe un indice $i_0 \in \{1,\dots,n\}$ tel que $x_{i_0}$ soit une médiane de $(x_j)$ avec poids $(w_j)$.
+\end{lemma}
+\begin{proof}
+ Définissons la fonction objectif
+    \[
+        f(t) \triangleq \sum_{j=1}^n w_j \, |x_j - t|, \qquad t \in \mathbb{R}.
+    \]
+Supposons que les $x_j$ soient ordonnés :
+    \(
+        x_1 \leq x_2 \leq \cdots \leq x_n.
+    \)
+    Posons $x_0 \triangleq -\infty$ et $x_{n+1}\triangleq+\infty$.  
+    Pour $t \in [x_i, x_{i+1}]$ avec $i \in \{0,\dots,n\}$, on a
+    \[
+        f(t) = \sum_{j=1}^i w_j (t - x_j) + \sum_{j=i+1}^n w_j (x_j - t).
+    \]
+    C’est une fonction affine en $t$ sur l’intervalle $[x_i,x_{i+1}]$, de pente
+    $
+        g_i \triangleq \sum_{j=1}^i w_j - \sum_{j=i+1}^n w_j.
+    $
+    La suite $(g_i)$ est croissante en $i$ et il existe $i_0\in \{1,\dots,n\}$ tel que
+    \(
+        g_{i_0-1} \leq 0 \leq g_{i_0}.
+    \)
+    Ainsi, $f$ est décroissante sur $(-\infty, x_{i_0})$ et croissante sur $(x_{i_0},+\infty)$, 
+    donc $f$ atteint un minimum en $x_{i_0}$.  
+\end{proof}
+\begin{remark}
+    Le calcul d’une médiane et de la valeur de la fonction objectif associée peut s’effectuer en temps quasi-linéaire en $n$, 
+    en triant les $x_i$ puis en cherchant l’indice $i$ où $g_i$ change de signe (le calcul de tous les $g_i$ et l’évaluation de la fonction objectif sont linéaires en $n$).
+\end{remark}
+
+Pour déterminer la pente optimale \(a\), on procède ainsi :  
+pour chaque $i_0$, on considère les rapports 
+\(\tfrac{y_j - y_{i_0}}{x_j - x_{i_0}}\) pondérés par 
+\(\lvert x_j - x_{i_0}\rvert\).  
+On applique ensuite l’algorithme de calcul de médiane à cette famille, ce qui fournit 
+une médiane \(m_{i_0}\) ainsi que la valeur correspondante de la fonction objectif, notée \(v_{i_0}\). 
+On choisit \(a\) en minimisant sur $i_0$, soit
+\(
+a \triangleq m_{i_0^*} \) avec \(v_{i_0^*} \triangleq \min_{i_0} v_{i_0},
+\)
+ce qui conduit à une complexité quasi-quadratique. Une fois \(a\) choisi, on déduit le paramètre d'ordonnée à l'origine par  
+\(
+b \triangleq y_{i_0^*} - a x_{i_0^*}.
+\)
+On peut vérifier l’optimalité du couple \((a,b)\) de la façon suivante :
+\begin{align*}
+\min_{a,b} \sum_{i=1}^n \lvert ax_i+b-y_i\rvert &= \min_a\min_{i_0\in \{1,\dots,n\}} \sum_{i=1}^n \lvert a(x_i-x_{i_0})+y_{i_0}-y_i\rvert
+\\&=
+\min_{i_0\in \{1,\dots,n\}}\min_a \sum_{i=1}^n \vert x_i-x_{i_0}\vert\cdot\lvert a-\frac{y_i-y_{i_0}}{x_i-x_{i_0}}\rvert.
+\end{align*}
+
+\item \label{Avant le début de la construction} Par un raisonnement analogue à celui de la question \ref{Proposez un algorithme en temps  quasi-quadratique}, il suffit de résoudre 
+\[
+\min_{a,b_1,\dots,b_d}
+\sum_{k=1}^d\sum_{i=1}^n \lvert ax_{ki}+b_k-y_{ki}\rvert.
+\]
+Comme précédemment, on sait que chaque $b_k$ optimal est de la forme 
+\[
+b_k = y_{ki_k}-ax_{ki_k},
+\]
+pour un certain $i_k$.  
+Cependant, contrairement au cas unidimensionnel, on ne peut pas parcourir exhaustivement tous les choix possibles de $(i_1,\dots,i_d)$, car cela mènerait à une complexité prohibitive de l’ordre de $n^d$.  
+En revanche, on sait que l’optimum en $a$ doit apparaître pour une valeur de la forme
+\[
+a=\frac{y_{kj}-y_{ki_k}}{x_{kj}-x_{ki_k}}.
+\]
+Il y a au plus $d n^2$ tels rapports candidats.  
+On commence par trier les ratios candidats, pour un coût de $\mathcal O(d n^2 \log(d n))$. 
+On peut ensuite effectuer une recherche binaire sur ces ratios afin de déterminer le $a$ optimal. 
+Grâce au lemme suivant, cette recherche est possible : à chaque étape, on évalue la fonction et sa pente pour décider de quel côté se situe le minimum (c'est-à-dire le changement de signe de la pente). 
+Le coût total de cette recherche binaire est $\mathcal O(\log(d n) \cdot d n \log n)$. 
+Comme cette complexité est inférieure à celle du tri initial, le résultat global est préservé.
+
+\begin{lemma}
+La fonction
+\[
+a \;\mapsto\; \min_{b_1,\dots,b_d} \sum_{k=1}^d \sum_{i=1}^n \lvert a x_{ki} + b_k - y_{ki} \rvert
+\]
+est convexe et affine sur chaque intervalle ouvert délimité par deux ratios consécutifs. 
+L'évaluation de la fonction ainsi que le calcul de sa pente se fait en temps $\mathcal O(d n \log n)$.
+\end{lemma}
+
+\begin{proof}
+La convexité provient du fait qu'il s'agit du minimum partiel d'une fonction conjointe convexe en $(a, b_1, \dots, b_d)$.
+
+Pour un $k$ fixé et pour tout $a$ dans un intervalle ouvert délimité par deux ratios consécutifs, l'ordre des valeurs $a x_{ki} + b_k - y_{ki}$ reste constant. 
+Ainsi, le $b_k$ optimal reste de la forme $b_k = y_{ki_k} - a x_{ki_k}$ avec un indice $i_k$ fixe sur tout l'intervalle, et la fonction est donc linéaire en $a$ sur cet intervalle.
+
+Enfin, pour chaque candidat $a$, les $b_k$ optimaux sont obtenus via $d$ calculs de médiane, chacun coûtant $\mathcal O(n \log n)$, ce qui donne un coût total $\mathcal O(d n \log n)$. 
+Une fois les $b_k$ déterminés, l'évaluation de la fonction et de sa pente se fait en temps $\mathcal O(d n)$.
+\end{proof}
+
+
+
+\end{enumerate}
+
+
+\subsection*{Notes et références}
+Cette énigme s'articule autour de la \emph{méthode des moindres écarts absolus} (LAD, \emph{Least Absolute Deviations}), qui consiste à minimiser la somme des écarts absolus entre un modèle et des données, soit la norme $L_1$ des résidus. Cette méthode est robuste aux valeurs aberrantes et correspond au maximum de vraisemblance si les erreurs suivent une loi de Laplace \cite{boscovich1757}.
+
+Comme on l'a vu, ajuster une droite à un ensemble de points bidimensionnels $(x_i,y_i)$ fait intervenir naturellement le concept de médiane. Un estimateur particulièrement pertinent dans ce contexte est l'\emph{estimateur de Theil--Sen} \cite{sen1968estimates}, qui choisit la pente $m$ comme la médiane des pentes $(y_j - y_i)/(x_j - x_i)$ entre toutes les paires de points. Une fois la pente fixée, l'ordonnée à l'origine optimale peut être prise comme la médiane des valeurs $y_i - m x_i$.
+
+Ce type de régression robuste trouve également des applications en vision 3D. Par exemple, pour calibrer les paramètres intrinsèques d'une caméra à partir d'un nuage de points 3D $(X_i,Y_i,Z_i)$ et de leurs projections dans l'image $(u_i,v_i)$, on cherche à estimer la focale $f$ et le centre optique $(c_x,c_y)$. La projection est alors de la forme
+\[
+u_i \approx f \frac{X_i}{Z_i} + c_x, \quad v_i \approx f \frac{Y_i}{Z_i} + c_y.
+\]
+En considérant une loss $L_1$, ce problème se rapproche de la structure de la question~\ref{Avant le début de la construction} avec $d=2$. Plus récemment, la même approche est utilisé pour réaligner les prédictions d'un nuage de points 3D avec la vérité terrain correspondante, afin d'obtenir une supervision plus efficace \cite{wang2025moge}.
+
+\bibliography{\currfiledir/sources.bib}
+\newpage
+
+

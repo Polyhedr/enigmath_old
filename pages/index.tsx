@@ -394,20 +394,29 @@ export async function getStaticProps() {
 
   const images: ImageProps[] = await Promise.all(
     localImages.map(async (img) => {
-      // fetch and parse tags.txt
       let title = img.folderName;
       let difficulty: number | undefined;
       let computer: number | undefined;
       let tags: string[] = [];
 
       try {
-        const raw = await fetch(`/enigmas/${encodeURIComponent(img.folderName)}/tags.txt`).then(res => res.text());
-        const parts = raw.split(/[\n,]/).map(t => t.trim()).filter(Boolean);
+        const tagsPath =
+          img.folderName === "Introduction"
+            ? path.join(process.cwd(), "public", "Introduction", "tags.txt")
+            : path.join(process.cwd(), "public", "enigmas", img.folderName, "tags.txt");
+
+        const raw = await fs.readFile(tagsPath, "utf-8");
+
+        const parts = raw
+          .split(/[\n,]/)
+          .map(t => t.trim())
+          .filter(Boolean);
+
         difficulty = Number(parts[0]) || undefined;
         computer = Number(parts[1]) || undefined;
         title = parts[2] || img.folderName;
         tags = parts.slice(3);
-      } catch (err) {
+      } catch {
         console.warn(`No tags.txt for ${img.folderName}`);
       }
 
@@ -424,4 +433,5 @@ export async function getStaticProps() {
 
   return { props: { images } };
 }
+
 
