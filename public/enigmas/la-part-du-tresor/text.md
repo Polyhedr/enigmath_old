@@ -13,11 +13,11 @@ Une horde de 12 pirates doit se partager un trésor de 100 pièces d'or qu'ils v
 
 **Questions :**
 
-1. 🌶️${\color{red}}^{1.4}$ Quel partage va proposer le plus vieux sachant que les pirates sont cupides, sadiques (même s'il n'ont rien à gagner de plus, il choisiront de vous exécuter) mais qu'en priorité ils souhaitent garder la vie sauve ?
+1. 🌶️${}^{\color{red}1.4}$ Quel partage va proposer le plus vieux sachant que les pirates sont cupides, sadiques (même s'il n'ont rien à gagner de plus, il choisiront de vous exécuter) mais qu'en priorité ils souhaitent garder la vie sauve ?
 
-2. 🌶️${\color{red}}^{1.9}$ Pour 208 pirates, l'aîné est-il sûr d'être exécuté quel que soit le partage qu'il propose ?
+2. 🌶️${}^{\color{red}1.9}$ Pour 208 pirates, l'aîné est-il sûr d'être exécuté quel que soit le partage qu'il propose ?
 
-3. 🌶️${\color{red}}^{2.3}$ Avec $N$ pirates et $G$ pièces d'or, tels que $N > 2G$, déterminez :
+3. 🌶️${}^{\color{red}2.3}$ Avec $N$ pirates et $G$ pièces d'or, tels que $N > 2G$, déterminez :
 
    - quels pirates survivront,
    - quels pirates recevront des pièces d'or,

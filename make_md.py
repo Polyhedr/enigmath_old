@@ -218,9 +218,9 @@ class MD:
         q_split = q.split(self.re)
         difficulty, computer, text = float(q_split[0][1:]), float(q_split[1][1:]), self.re.join(q_split[2:])
 
-        indicators = f"🌶️${self.le}\color{self.le}red{self.re}{self.re}^{self.le}{difficulty}{self.re}$"
+        indicators = f"🌶️${self.le}{self.re}^{self.le}\color{self.le}red{self.re}{difficulty}{self.re}$"
         if computer >0:
-            indicators += f"💻${self.le}\color{self.le}blue{self.re}{self.re}^{self.le}{computer}{self.re}$"
+            indicators += f"💻${self.le}{self.re}^{self.le}\color{self.le}blue{self.re}{computer}{self.re}$"
 
         return indicators, text
 

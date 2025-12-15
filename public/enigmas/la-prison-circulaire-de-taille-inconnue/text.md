@@ -20,11 +20,11 @@ Naturellement, le gardien lira soigneusement votre note... et ensuite, il mélan
 
 **Questions :**
 
-1. 🌶️${\color{red}}^{2.2}$ On admet que les prisonniers peuvent lancer des pièces, ce qui leur permet de prendre des décisions aléatoires que le gardien ne peut pas prévoir, même s’il connaît leur stratégie. Décrivez une stratégie permettant aux prisonniers de déterminer $n$ (presque sûrement).
+1. 🌶️${}^{\color{red}2.2}$ On admet que les prisonniers peuvent lancer des pièces, ce qui leur permet de prendre des décisions aléatoires que le gardien ne peut pas prévoir, même s’il connaît leur stratégie. Décrivez une stratégie permettant aux prisonniers de déterminer $n$ (presque sûrement).
 
-2. 🌶️${\color{red}}^{2.9}$ Donnez une solution qui n’utilise aucune forme d’aléatoire et qui garantit d’aboutir en un nombre déterminé de jours.
+2. 🌶️${}^{\color{red}2.9}$ Donnez une solution qui n’utilise aucune forme d’aléatoire et qui garantit d’aboutir en un nombre déterminé de jours.
 
-3. 🌶️${\color{red}}^{3.0}$ On suppose que la prison n’est plus circulaire, mais forme un graphe orienté fortement connexe, chaque cellule contenant au moins un interrupteur et une lumière, et chaque lumière étant contrôlée par exactement un interrupteur situé dans une autre cellule. Décrivez une stratégie permettant aux prisonniers de déterminer $n$.
+3. 🌶️${}^{\color{red}3.0}$ On suppose que la prison n’est plus circulaire, mais forme un graphe orienté fortement connexe, chaque cellule contenant au moins un interrupteur et une lumière, et chaque lumière étant contrôlée par exactement un interrupteur situé dans une autre cellule. Décrivez une stratégie permettant aux prisonniers de déterminer $n$.
 
 
 
