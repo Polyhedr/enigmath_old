@@ -32,22 +32,22 @@ Dans le fichier `.tex`, le code Python doit être inclus avec la syntaxe suivant
 \vspace{-.455cm}
 \lstinputlisting{\currfiledir/1.py}
 ```
-Pour chaque question, n’oubliez pas de spécifier les indices de **difficulté** et d’**exigence en calcul** (valeurs $x$ comprises entre 0 et 5) à l’aide de `\indicators{DIFFICULTE}{EXIGENCE_CALCUL}`.
+Pour chaque question, n’oubliez pas de spécifier les indices de **difficulté** et d’**exigence en calcul** (valeurs $X$ comprises entre 0 et 5) à l’aide de `\indicators{DIFFICULTE}{EXIGENCE_CALCUL}`.
 Ces indices sont affichés avec les symboles suivants :
 
-- $\text{🌶️}^{\color{red}x}$ : **indice de difficulté** (avec $x \in [0,5^x]$)
-    - $x < 1$ : facile  
-    - $x \in [1,2]$ : moyen  
-    - $x \in [2,3]$ : difficile  
-    - $x \in [3,4]$ : très difficile  
-    - $x \in [4,5]$ : niveau recherche  
+- $\text{🌶️}^{\color{red}X}$ : **indice de difficulté** (avec $X \in [0,5^x]$)
+    - $X < 1$ : facile  
+    - $X \in [1,2]$ : moyen  
+    - $X \in [2,3]$ : difficile  
+    - $X \in [3,4]$ : très difficile  
+    - $X \in [4,5]$ : niveau recherche  
 
-- $\text{💻}^{\color{blue}x}$ : **indice d’exigence en calcul** (avec $x \in [0,5]$)
-    - $x < 1$ : l’ordinateur peut aider, mais la résolution reste possible entièrement à la main  
-    - $x \in [1,2]$ : code élémentaire  
-    - $x \in [2,3]$ : code plutôt avancé  
-    - $x \in [3,4]$ : code très difficile  
-    - $x \in [4,5]$ : code reposant sur des algorithmes de niveau recherche 
+- $\text{💻}^{\color{blue}X}$ : **indice d’exigence en calcul** (avec $X \in [0,5]$)
+    - $X < 1$ : l’ordinateur peut aider, mais la résolution reste possible entièrement à la main  
+    - $X \in [1,2]$ : code élémentaire  
+    - $X \in [2,3]$ : code plutôt avancé  
+    - $X \in [3,4]$ : code très difficile  
+    - $X \in [4,5]$ : code reposant sur des algorithmes de niveau recherche 
 
 ## 2. Renommage du dossier
 
