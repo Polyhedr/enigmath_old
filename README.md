@@ -13,12 +13,10 @@ Voici les étapes à suivre pour soumettre votre énigme :
 
 1. **Édition de l’énigme**
 
-    Commencez par éditer le fichier  
-    `/enigmas/l-enigme-de-freudenthal/text.tex`.
+    Commencez par éditer le fichier `/enigmas/l-enigme-de-freudenthal/text.tex`.
 
-    Vous pouvez :
-    - modifier l’image associée à l’énigme :  
-        `/enigmas/l-enigme-de-freudenthal/image.jpg`
+    Vous pouvez aussi :
+    - modifier l’image associée à l’énigme : `/enigmas/l-enigme-de-freudenthal/image.jpg`
     - inclure du code Python :
         - `1.py` pour la question 1,
         - `2.py` pour la question 2, etc.
@@ -35,16 +33,16 @@ Voici les étapes à suivre pour soumettre votre énigme :
     \lstinputlisting{\currfiledir/1.py}
     ```
     Pour chaque question, n’oubliez pas de spécifier les indices de **difficulté** et d’**exigence en calcul** (valeurs $x$ comprises entre 0 et 5) à l’aide de `\indicators{DIFFICULTE}{EXIGENCE_CALCUL}`.
-    Ces indices sont affichés sous la forme des symboles suivants :
+    Ces indices sont affichés avec les symboles suivants :
 
-    - 🌶️ : **indice de difficulté** (avec $x \in [0,5]$)
+    - 🌶️${}^x$ : **indice de difficulté** (avec $x \in [0,5]$)
         - $x < 1$ : facile  
         - $x \in [1,2]$ : moyen  
         - $x \in [2,3]$ : difficile  
         - $x \in [3,4]$ : très difficile  
         - $x \in [4,5]$ : niveau recherche  
 
-    - 💻 : **indice d’exigence en calcul** (avec $x \in [0,5]$)
+    - 💻${}^x$ : **indice d’exigence en calcul** (avec $x \in [0,5]$)
         - $x < 1$ : l’ordinateur peut aider, mais la résolution reste possible entièrement à la main  
         - $x \in [1,2]$ : code élémentaire  
         - $x \in [2,3]$ : code plutôt avancé  
@@ -53,8 +51,7 @@ Voici les étapes à suivre pour soumettre votre énigme :
 
 2. **Renommage du dossier**
 
-    Une fois l’énigme éditée, vous pouvez renommer le dossier  
-    `l-enigme-de-freudenthal`.
+    Une fois l’énigme éditée, vous pouvez renommer le dossier `l-enigme-de-freudenthal`.
 
     Pour de bonnes pratiques, limitez-vous aux caractères suivants :
     - lettres (`a–z`, `A–Z`)
@@ -63,8 +60,9 @@ Voici les étapes à suivre pour soumettre votre énigme :
 
 3. **Titre et tags**
 
-    - Modifiez le titre de l’énigme dans le fichier `.tex`.
-    - Ajoutez des tags en haut du fichier pour catégoriser l’énigme, par exemple :
+    Modifiez le titre de l’énigme dans le fichier `.tex`.
+    
+    Ajoutez des tags en haut du fichier pour catégoriser l’énigme, par exemple :
 
     ```latex
     % logique épistémique
@@ -74,13 +72,13 @@ Voici les étapes à suivre pour soumettre votre énigme :
 
 4. **Références**
 
-    - Incluez des références relatives à l’énigme dans la sous-section :
+    Incluez des références relatives à l’énigme dans la sous-section :
 
         ```latex
         \subsection*{Notes et références}
         ```
 
-    - Citez vos sources en ajoutant la ligne suivante dans le fichier `.tex` :
+    Citez vos sources en ajoutant la ligne suivante dans le fichier `.tex` :
 
         ```latex
         \bibliography{\currfiledir/sources.bib}
@@ -88,7 +86,7 @@ Voici les étapes à suivre pour soumettre votre énigme :
 
 5. **Compilation**
 
-    - Revenez dans le dossier racine parent et modifiez `solution.tex`, en mettant à jour la ligne :
+    Revenez dans le dossier racine parent et modifiez `solution.tex`, en mettant à jour la ligne :
 
         ```latex
         \input{enigmas/l-enigme-de-freudenthal/text.tex}
@@ -96,16 +94,13 @@ Voici les étapes à suivre pour soumettre votre énigme :
 
         afin d’inclure la version correcte de votre énigme.
 
-    - Lancez ensuite les commandes suivantes dans votre terminal :
+    Lancez ensuite les commandes suivantes dans votre terminal :
 
         ```bash
-        lualatex main
-        bibtex main
-        lualatex main
-        lualatex main
+        lualatex solution
+        bibtex solution
+        lualatex solution
+        lualatex solution
         ```
 
-    - Cela générera le fichier `solution.pdf`.  
-        Copiez-le dans le dossier de votre énigme, zippez ce dossier, et envoyez-le par mail à :
-
-        **contact.enigmath@proton.me**
+    Cela générera le fichier `solution.pdf`. Copiez-le dans le dossier de votre énigme, zippez ce dossier, et envoyez-le par mail à **contact.enigmath@proton.me**.
