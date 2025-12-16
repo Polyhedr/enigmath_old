@@ -25,7 +25,7 @@ où $k \in \mathbb{N},$ $a_0, \dots, a_k,a'_0, \dots, a'_k \in \mathbb{N}$ et $(
 1. 🌶️${}^{\color{red}0.4}$ Résolvez le jeu en utilisant les deux actions autorisées :
     $$
     \begin{align*}
- &    A\triangleq(1,3,1,0,0) \longleftrightarrow (0,2,1,1,2) \\& \text{et} \\& B\triangleq(0,0) \longleftrightarrow (1,1).
+    & A\triangleq(1,3,1,0,0) \longleftrightarrow (0,2,1,1,2) \\& \text{et} \\& B\triangleq(0,0) \longleftrightarrow (1,1).
     \end{align*}
     $$
 
@@ -34,7 +34,7 @@ où $k \in \mathbb{N},$ $a_0, \dots, a_k,a'_0, \dots, a'_k \in \mathbb{N}$ et $(
 3. 🌶️${}^{\color{red}0.7}$ Avec les deux actions
     $$
     \begin{align*}
- &    A\triangleq(1,0,0,0) \longleftrightarrow (0,1,1,1) \\& \text{et} \\& B\triangleq(0,0) \longleftrightarrow (1,1),
+    & A\triangleq(1,0,0,0) \longleftrightarrow (0,1,1,1) \\& \text{et} \\& B\triangleq(0,0) \longleftrightarrow (1,1),
     \end{align*}
     $$
     le jeu est-il résoluble ? 
@@ -42,7 +42,7 @@ où $k \in \mathbb{N},$ $a_0, \dots, a_k,a'_0, \dots, a'_k \in \mathbb{N}$ et $(
 4. 🌶️${}^{\color{red}1.0}$ Avec les deux actions
     $$
     \begin{align*}
- &    A\triangleq(1,0,0,0,0,0) \longleftrightarrow (0,1,1,1,1,1) \\& \text{et} \\& B\triangleq(0,0,0) \longleftrightarrow (1,1,1),
+    & A\triangleq(1,0,0,0,0,0) \longleftrightarrow (0,1,1,1,1,1) \\& \text{et} \\& B\triangleq(0,0,0) \longleftrightarrow (1,1,1),
     \end{align*}
     $$
     le jeu est-il résoluble ? 
