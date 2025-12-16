@@ -281,6 +281,7 @@ const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
     Trier par compute
   </label>
 </div>
+        </div>
 
         {/* ---------------- Gallery ---------------- */}
         <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(250px,1fr))]">
