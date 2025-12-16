@@ -5,7 +5,7 @@ Enigmath est une banque d’énigmes mathématiques avancées, conçues pour sol
 ## Soumission
 
 - Pour **soumettre une nouvelle énigme**, cliquez sur le bouton bleu ➤ en haut à droite de cette page.  
-  *(Pour **télécharger le template d’énigme**, utilisez le bouton ⤓ situé également en haut à droite, le template est à **compiler avec LuaLaTeX**)*  
+  *(Pour **télécharger le template d’énigme**, utilisez le bouton ⤓ situé également en haut à droite)*  
 - Pour **soumettre votre solution** ou **ajouter une nouvelle question** à une énigme, utilisez le bouton bleu ➤ en haut à droite de la page de l’énigme.
 
 ## Filtres et symboles
