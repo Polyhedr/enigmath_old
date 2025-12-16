@@ -205,6 +205,9 @@ const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
   };
 
   // ---------------- Filter images ----------------
+const [sortByDifficulty, setSortByDifficulty] = useState(false);
+const [sortByComputer, setSortByComputer] = useState(false);
+
   const normalizedQuery = normalize(searchQuery);
 
   const filteredImages = images.filter((img) => {
@@ -252,8 +255,7 @@ const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
           </div>
 
           {/* Search */}
-const [sortByDifficulty, setSortByDifficulty] = useState(false);
-const [sortByComputer, setSortByComputer] = useState(false);
+
 
 // ---------------- Gallery ----------------
 <div className="mb-4 flex items-center gap-3">
