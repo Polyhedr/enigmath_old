@@ -22,10 +22,10 @@ Les **questions** affichent :
    - $x \in [4,5]$ : niveau recherche
 - 💻${}^{\color{blue}x}$ pour signaler que **l’utilisation de l’ordinateur peut aider** à résoudre l’énigme (avec $x\in [0,5]$), 
    - $x < 1$ : l’ordinateur peut aider, mais la résolution est possible à la main
-   - $x \in [1,2]$ : snippets de code élémentaires
+   - $x \in [1,2]$ : code élémentaires
    - $x \in [2,3]$ : code plutôt avancé
    - $x \in [3,4]$ : code très difficile
-   - $x \in [4,5]$ : algorithmes de niveau recherche
+   - $x \in [4,5]$ : code utilisant des algorithmes de niveau recherche
 
 ## Citer Enigmath
 Si vous utilisez Enigmath dans vos travaux de recherche, merci de citer le projet à l'aide de l'entrée BibTeX suivante :
