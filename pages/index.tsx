@@ -252,7 +252,7 @@ const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
           </div>
 
           {/* Search */}
-{/* Search with embedded arrow */}
+{/* Search with embedded dropdown arrow (frontend only) */}
 <div className="relative w-full">
   <input
     type="text"
@@ -262,15 +262,11 @@ const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
     className="w-full h-12 pl-3 pr-10 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-gray-400"
   />
 
-  {/* Arrow button inside input */}
+  {/* Arrow (no functionality yet) */}
   <button
     type="button"
-    className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-800 transition"
-    onClick={() => {
-      console.log("Open filters / dropdown");
-      // ici tu ouvriras ton menu plus tard
-    }}
-    aria-label="Open filters"
+    className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-800 transition cursor-default"
+    aria-label="Search options"
   >
     ▾
   </button>
