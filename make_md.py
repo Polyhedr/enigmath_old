@@ -132,8 +132,7 @@ def latex_lists(text, indent_step=3):
                 line_prefix = f"{prefix}**{label}** "
             else:
                 line_prefix = prefix
-            for line in item_text.splitlines():
-                result_lines.append(line_prefix + line)
+            result_lines.append(line_prefix + ' '.join(item_text.splitlines()))
             continue
 
         # Free text
@@ -187,9 +186,10 @@ class MD:
         t = t.replace("\medskip", "\n\n")
         t = t.replace(r'\(', '$').replace(r'\)', '$')
         t = t.replace(r'---', '—')
-        t = t.replace(r'~', '$~$')
+        t = t.replace(r'~', '')
         t = display_math(t, indent_math)
-        # t = t.replace(r'\[', f'\n$$\n\\begin{self.le}equation*{self.re}').replace(r'\]', f'\n\\end{self.le}equation*{self.re}\n$$')
+        # if quad is in t, and if we split by begin, the first chunck do not contain a &, then we replace quad by //&
+        # new line with a sigle ponctuation...
         return t
     
     def build(self):
