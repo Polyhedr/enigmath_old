@@ -191,6 +191,11 @@ class MD:
         t = t.replace(r'\og ', '"').replace(r' \fg{}', '"')
         t = t.replace("\medskip", "\n\n")
         t = t.replace(r'\(', '$').replace(r'\)', '$')
+        t = re.sub(
+            r"\$([^$]+)\$\s*([.,])",
+            r"$\1\2$",
+            t
+        )
         t = t.replace(r'---', '—')
         t = t.replace(r'~', ' ')
         t = display_math(t, indent_math)
@@ -205,7 +210,7 @@ class MD:
                     count=1
                 )           
 
-        # new line with a sigle ponctuation... part du tresor, 3 dés, 3 dieux, plus rien sur la ligne
+        # new line with a sigle ponctuation...    plus rien sur la ligne
         # last dash line encore utile ?
         return t
     

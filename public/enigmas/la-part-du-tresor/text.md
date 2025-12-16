@@ -17,7 +17,7 @@ Une horde de 12 pirates doit se partager un trésor de 100 pièces d'or qu'ils v
 
 2. 🌶️${}^{\color{red}1.9}$ Pour 208 pirates, l'aîné est-il sûr d'être exécuté quel que soit le partage qu'il propose&nbsp;?
 
-3. 🌶️${}^{\color{red}2.3}$ Avec $N$ pirates et $G$ pièces d'or, tels que $N > 2G$, déterminez&nbsp;:
+3. 🌶️${}^{\color{red}2.3}$ Avec $N$ pirates et $G$ pièces d'or, tels que $N > 2G,$ déterminez&nbsp;:
 
    - quels pirates survivront,
    - quels pirates recevront des pièces d'or,

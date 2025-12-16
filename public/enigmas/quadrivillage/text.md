@@ -14,7 +14,7 @@ Son objectif est de placer cette route de manière à réduire au maximum le tem
 1. 🌶️${}^{\color{red}0.4}$ En supposant que les habitants se déplacent uniquement le long des rues du quadrillage, 
 déterminez, pour une Grande Allée donnée, le temps de trajet d'un habitant jusqu'à celle-ci. 
 
-2. 🌶️${}^{\color{red}2.1}$ Proposez un algorithme en temps  quasi-quadratique en $n$, 
+2. 🌶️${}^{\color{red}2.1}$ Proposez un algorithme en temps  quasi-quadratique en $n,$ 
 permettant de déterminer la position optimale de la Grande Allée, 
 de manière à minimiser la somme des temps de trajet de tous les habitants 
 jusqu’à celle-ci.

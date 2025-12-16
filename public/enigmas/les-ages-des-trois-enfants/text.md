@@ -27,8 +27,8 @@ Monsieur A rencontre par hasard dans la rue son vieil ami, monsieur B. Après qu
 
 1. 🌶️${}^{\color{red}1.0}$💻${}^{\color{blue}0.6}$ Quels âge ont les enfants de Monsieur A&nbsp;? 
 
-2. 🌶️${}^{\color{red}1.2}$💻${}^{\color{blue}1.6}$ Existe-t-il une autre valeur du produit $N$, différente de $36$, conduisant à la même énigme&nbsp;? 
-Si oui, listez ces nombres jusqu'à $100$. 
+2. 🌶️${}^{\color{red}1.2}$💻${}^{\color{blue}1.6}$ Existe-t-il une autre valeur du produit $N,$ différente de $36,$ conduisant à la même énigme&nbsp;? 
+Si oui, listez ces nombres jusqu'à $100.$ 
 Un tel $N$ est appelé Nombre Triplement Curieux (NTC), et les triplets $\{a, b, c\}$ et $\{d, e, f\}$ tels que
 $
 abc = def = N

@@ -4,7 +4,7 @@
 On considère une ligne infinie de cases indexées par les entiers relatifs
 $\mathbb{Z}\triangleq\{
 \dots, -2, -1, 0, 1, 2, \dots \}
-$, initialement avec un seul jeton sur la case $0$, toutes les autres étant vides.
+,$ initialement avec un seul jeton sur la case $0,$ toutes les autres étant vides.
 Au cours du jeu, chaque case peut contenir une pile quelconque de jetons, et l'objectif est de retirer tous les jetons de la ligne en appliquant une suite d'actions autorisées.  
 
 Une action $A$ est définie comme une transformation appliquée à une portion de la ligne, que l'on note
@@ -14,7 +14,7 @@ A\triangleq(a_0, \dots, a_k)
 \longleftrightarrow  (a'_0, \dots, a'_k),
 \end{align*}
 $$
-où $k \in \mathbb{N},$ $a_0, \dots, a_k,a'_0, \dots, a'_k \in \mathbb{N}$ et $(a_0, \dots, a_k)\neq (a'_0, \dots, a'_k)$. Pour $i\in\mathbb Z$, appliquer $A$ sur les $k+1$ cases consécutives d'indices $i,\dots,i+k$ signifie qu'on retire $a_j$ jetons de la case $i+j$ et qu'on ajoute $a'_j$ jetons à la même case, pour tout $0\le j\le k$. L'opération n'est permise que si chaque case $i+j$ contient au moins $a_j$ jetons, suffisants pour effectuer les retraits requis (aucun nombre négatif de jetons n'est autorisé, même temporairement). L'action $A$ peut également être effectuée dans le sens inverse en échangeant les $a_j$ et les $a'_j$.
+où $k \in \mathbb{N},$ $a_0, \dots, a_k,a'_0, \dots, a'_k \in \mathbb{N}$ et $(a_0, \dots, a_k)\neq (a'_0, \dots, a'_k).$ Pour $i\in\mathbb Z,$ appliquer $A$ sur les $k+1$ cases consécutives d'indices $i,\dots,i+k$ signifie qu'on retire $a_j$ jetons de la case $i+j$ et qu'on ajoute $a'_j$ jetons à la même case, pour tout $0\le j\le k.$ L'opération n'est permise que si chaque case $i+j$ contient au moins $a_j$ jetons, suffisants pour effectuer les retraits requis (aucun nombre négatif de jetons n'est autorisé, même temporairement). L'action $A$ peut également être effectuée dans le sens inverse en échangeant les $a_j$ et les $a'_j.$
 
 
 
@@ -61,27 +61,27 @@ où $k \in \mathbb{N},$ $a_0, \dots, a_k,a'_0, \dots, a'_k \in \mathbb{N}$ et $(
     \end{align*}
     $$
     Montrez que, pour que le jeu soit résoluble, il est nécessaire et suffisant qu'au moins une des actions autorisées ait un côté constitué uniquement de zéros, et que l'idéal de $\mathbb{Z}[X]$ engendré par les polynômes associés aux actions autorisées
-    contienne une puissance de $X$. 
+    contienne une puissance de $X.$ 
 
 6. 🌶️${}^{\color{red}1.5}$ On suppose que les coefficients constants des polynômes associés aux actions autorisées 
 sont premiers entre eux dans leur ensemble. 
 Trouvez alors une condition nécessaire et suffisante plus forte que la précédente.
 
 7. 🌶️${}^{\color{red}1.9}$ On suppose maintenant qu'il y a exactement deux actions, 
-auxquelles on associe les polynômes $P$ et $Q$, 
+auxquelles on associe les polynômes $P$ et $Q,$ 
 avec l'un des deux à coefficients positifs et correspondant à une action dont un côté est le vecteur nul.  
 On suppose que $P(0)$ et $Q(0)$ sont premiers entre eux, 
-et que le coefficient dominant de l’un des polynômes $P$ ou $Q$ appartient à $\{\pm 1\}$.  Montrez alors qu’une condition nécessaire et suffisante de résolubilité du jeu 
+et que le coefficient dominant de l’un des polynômes $P$ ou $Q$ appartient à $\{\pm 1\}.$  Montrez alors qu’une condition nécessaire et suffisante de résolubilité du jeu 
 est que le résultant 
 $
 \operatorname{Res}(P,Q)
 $
-soit égal à $\pm 1$.
+soit égal à $\pm 1.$
 
 8. 🌶️${}^{\color{red}2.4}$ Soient $P$ et $Q$ deux polynômes de $\mathbb Z[X]$ dont les coefficients sont croissants,  
 avec $P$ à coefficients positifs et $Q$ à coefficients négatifs.
-On suppose que le coefficient dominant de $P$ est strictement supérieur à $1$, 
-et que le coefficient dominant de $Q$ est égal à $-1$.  
+On suppose que le coefficient dominant de $P$ est strictement supérieur à $1,$ 
+et que le coefficient dominant de $Q$ est égal à $-1.$  
 Montrez que le jeu associé aux polynômes $P(X)$ et $1 + XQ(X)$
 n'est pas résoluble.
 
@@ -99,10 +99,10 @@ Avec les deux actions
     B \triangleq b \longleftrightarrow 1-b,
     \end{align*}
     $$
-    montrez que le jeu est résoluble si et seulement si $p$ divise $q$.
+    montrez que le jeu est résoluble si et seulement si $p$ divise $q.$
 
-10. 🌶️${}^{\color{red}1.5}$ On considère une grille infinie de cases indexées par les paires $(i,j) \in \mathbb{Z} \times \mathbb{Z}$.  
-Initialement, un unique jeton est placé en $(0,0)$, toutes les autres cases étant vides.  
+10. 🌶️${}^{\color{red}1.5}$ On considère une grille infinie de cases indexées par les paires $(i,j) \in \mathbb{Z} \times \mathbb{Z}.$  
+Initialement, un unique jeton est placé en $(0,0),$ toutes les autres cases étant vides.  
 On définie une action $A$ par
     $$
     \begin{align*}
