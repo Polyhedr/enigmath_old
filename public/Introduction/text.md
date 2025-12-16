@@ -1,6 +1,6 @@
 ## Bienvenue !
 
-Enigmath est une banque d’énigmes mathématiques avancées, conçues pour solliciter un raisonnement purement déductif, sans aucun recours à la culture générale ni à l’observation pas d’énigmes manipulatives, visuelles ou de type “raisonnement latéral”).
+Enigmath est une banque d’énigmes mathématiques avancées, conçues pour solliciter un raisonnement purement déductif, sans aucun recours à la culture générale ni à l’observation (pas d’énigmes manipulatives, visuelles ou de type "raisonnement latéral").
 
 ## Soumission
 
@@ -14,13 +14,13 @@ Chaque énigme possède des **tags** permettant de les classer selon les branche
 *(La barre de recherche filtre sur les titres et les tags des énigmes)*
 
 Les **questions** affichent :  
-- 🌶️${}^{x}$ pour indiquer la **difficulté** (avec $x \in [0,5]$)
+- 🌶️${}^{\color{red}x}$ pour indiquer la **difficulté** (avec $x \in [0,5]$)
    - $x < 1$ : facile
    - $x \in [1,2]$ : moyen
    - $x \in [2,3]$ : difficile
    - $x \in [3,4]$ : très difficile
    - $x \in [4,5]$ : niveau recherche
-- 💻${}^{x}$ pour signaler que **l’utilisation de l’ordinateur peut aider** à résoudre l’énigme (avec $x\in [0,5]$), 
+- 💻${}^{\color{blue}x}$ pour signaler que **l’utilisation de l’ordinateur peut aider** à résoudre l’énigme (avec $x\in [0,5]$), 
    - $x < 1$ : l’ordinateur peut aider, mais la résolution est possible à la main
    - $x \in [1,2]$ : snippets de code élémentaires
    - $x \in [2,3]$ : code plutôt avancé
