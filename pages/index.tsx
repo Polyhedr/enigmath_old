@@ -252,6 +252,10 @@ const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
           </div>
 
           {/* Search */}
+const [sortByDifficulty, setSortByDifficulty] = useState(false);
+const [sortByComputer, setSortByComputer] = useState(false);
+
+// ---------------- Gallery ----------------
 <div className="mb-4 flex items-center gap-3">
   <input
     type="text"
@@ -281,6 +285,7 @@ const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
     Trier par compute
   </label>
 </div>
+
         </div>
 
         {/* ---------------- Gallery ---------------- */}
