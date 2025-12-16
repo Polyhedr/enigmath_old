@@ -285,7 +285,7 @@ const searchMenuRef = useRef<HTMLDivElement>(null);
     aria-label="Search options"
   >
     <span
-      className={`inline-block transition-transform ${
+      className={`text-xl inline-block transition-transform ${
         searchMenuOpen ? "rotate-180" : ""
       }`}
     >
