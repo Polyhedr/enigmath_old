@@ -3,7 +3,7 @@
 
 Le village de Quadrivillage est organisé selon un quadrillage de rues.  
 À certaines intersections se trouve une maison, pour un total de $n$ maisons dans le village (chaque maison abrite exactement un habitant).  
-Le maire souhaite construire une Grande Allée : une route traversant le village en ligne droite, de façon oblique.  
+Le maire souhaite construire une Grande Allée&nbsp;: une route traversant le village en ligne droite, de façon oblique.  
 Son objectif est de placer cette route de manière à réduire au maximum le temps de trajet des habitants pour s’y rendre.
 
 

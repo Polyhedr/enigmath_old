@@ -22,7 +22,7 @@ où $k \in \mathbb{N},$ $a_0, \dots, a_k,a'_0, \dots, a'_k \in \mathbb{N}$ et $(
 
 **Questions :**
 
-1. 🌶️${}^{\color{red}0.4}$ Résolvez le jeu en utilisant les deux actions autorisées :
+1. 🌶️${}^{\color{red}0.4}$ Résolvez le jeu en utilisant les deux actions autorisées&nbsp;:
     $$
     \begin{align*}
     & A\triangleq(1,3,1,0,0) \longleftrightarrow (0,2,1,1,2) \\& \text{et} \\& B\triangleq(0,0) \longleftrightarrow (1,1).
@@ -34,18 +34,18 @@ où $k \in \mathbb{N},$ $a_0, \dots, a_k,a'_0, \dots, a'_k \in \mathbb{N}$ et $(
 3. 🌶️${}^{\color{red}0.7}$ Avec les deux actions
     $$
     \begin{align*}
-    & A\triangleq(1,0,0,0) \longleftrightarrow (0,1,1,1) \\& \text{et} \\& B\triangleq(0,0) \longleftrightarrow (1,1),
+    A\triangleq(1,0,0,0) \longleftrightarrow (0,1,1,1) \quad \text{et} \quad B\triangleq(0,0) \longleftrightarrow (1,1),
     \end{align*}
     $$
-    le jeu est-il résoluble ? 
+    le jeu est-il résoluble&nbsp;? 
 
 4. 🌶️${}^{\color{red}1.0}$ Avec les deux actions
     $$
     \begin{align*}
-    & A\triangleq(1,0,0,0,0,0) \longleftrightarrow (0,1,1,1,1,1) \\& \text{et} \\& B\triangleq(0,0,0) \longleftrightarrow (1,1,1),
+    A\triangleq(1,0,0,0,0,0) \longleftrightarrow (0,1,1,1,1,1) \quad \text{et} \quad B\triangleq(0,0,0) \longleftrightarrow (1,1,1),
     \end{align*}
     $$
-    le jeu est-il résoluble ? 
+    le jeu est-il résoluble&nbsp;? 
 
 5. 🌶️${}^{\color{red}1.5}$ 
 À chaque action
@@ -145,7 +145,7 @@ On définie une action $A$ par
     \end{bmatrix},
     \end{align*}
     $$
-    le jeu est-il résoluble ?
+    le jeu est-il résoluble&nbsp;?
 
 
 

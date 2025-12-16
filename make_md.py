@@ -181,6 +181,11 @@ class MD:
         return '\n'.join([l.split('%')[0] for l in t.split('\n')])
     
     def process(self, t, indent_math):
+        t = re.sub(
+            r"\s([:;!?])",
+            r"&nbsp;\1",
+            t
+        )
         t = re.sub(r'^[ \t]+', '', t, flags=re.MULTILINE)
         t = latex_lists(t)
         t = t.replace(r'\og ', '"').replace(r' \fg{}', '"')

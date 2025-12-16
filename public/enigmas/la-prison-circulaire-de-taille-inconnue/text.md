@@ -5,12 +5,12 @@ Vous avez été enfermés dans une prison formant un anneau parfait de $n$ cellu
 Dans chaque cellule se trouvent un interrupteur et une ampoule, mais le câblage a été manifestement conçu par un ingénieur fou.
 Si, à midi pile, l’interrupteur d'une cellule est en position "on", alors l’ampoule de la cellule voisine (dans le sens horaire) émet un bref flash. Sinon, la lampe reste éteinte.
 
-Afin d’empêcher toute forme de communication, chaque nuit à minuit, le gardien diffuse du gaz anesthésiant dans tout l’anneau, remet tous les interrupteurs sur "off", et réarrange les prisonniers comme bon lui semble. Mais il garde une règle immuable : une personne par cellule.
+Afin d’empêcher toute forme de communication, chaque nuit à minuit, le gardien diffuse du gaz anesthésiant dans tout l’anneau, remet tous les interrupteurs sur "off", et réarrange les prisonniers comme bon lui semble. Mais il garde une règle immuable&nbsp;: une personne par cellule.
 
-Un jour, le gardien entre dans votre cellule et vous lance un défi. Pour gagner votre liberté — et celle de tous les autres — une seule règle :
-à n’importe quel moment, n’importe quel prisonnier peut crier "Nous sommes $n$ prisonniers !"
-S’il dit vrai : tout le monde est libre.
-S’il se trompe : tout le monde est exécuté.
+Un jour, le gardien entre dans votre cellule et vous lance un défi. Pour gagner votre liberté — et celle de tous les autres — une seule règle&nbsp;:
+à n’importe quel moment, n’importe quel prisonnier peut crier "Nous sommes $n$ prisonniers&nbsp;!"
+S’il dit vrai&nbsp;: tout le monde est libre.
+S’il se trompe&nbsp;: tout le monde est exécuté.
 
 Le gardien vous autorise à envoyer un unique message écrit à tous les autres prisonniers, dans lequel vous pouvez expliquer les règles et proposer un plan. Eux n’ont pas le droit de répondre.
 Naturellement, le gardien lira soigneusement votre note... et ensuite, il mélangera les prisonniers autant que nécessaire pour tenter de faire échouer votre stratégie.

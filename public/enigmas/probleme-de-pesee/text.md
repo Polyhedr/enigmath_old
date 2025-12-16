@@ -12,7 +12,7 @@ Vous disposez d'un certain nombre de boules identiques à vu d'oeil, et toutes d
 
 2. 🌶️${}^{\color{red}2.7}$ Cette fois vous ne savez pas si l'intrus est plus lourde ou plus légère, l'identifier parmis 13 boules en trois pesées maximum.
 
-3. 🌶️${}^{\color{red}3.4}$ Généralisation : En notant $P$ le nombre de pesées autorisées, exprimer en fonction de $P$ le nombre maximal $N$ de boules tel qu'il existe une stratégie permettant de determiner l'intrus parmis $N$ boules en au plus $P$ pesées (on ne sait pas si l'intrus est plus léger ou plus lourd).
+3. 🌶️${}^{\color{red}3.4}$ Généralisation&nbsp;: En notant $P$ le nombre de pesées autorisées, exprimer en fonction de $P$ le nombre maximal $N$ de boules tel qu'il existe une stratégie permettant de determiner l'intrus parmis $N$ boules en au plus $P$ pesées (on ne sait pas si l'intrus est plus léger ou plus lourd).
 
 
 

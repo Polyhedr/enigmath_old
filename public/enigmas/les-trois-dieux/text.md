@@ -12,7 +12,7 @@ Les dieux comprennent le français mais répondent dans leur propre langue par "
 
 **Questions :**
 
-1. 🌶️${}^{\color{red}1.9}$ Quelles sont les trois questions que vous pouvez poser afin d’identifier avec certitude l’identité de chacun des trois dieux ?
+1. 🌶️${}^{\color{red}1.9}$ Quelles sont les trois questions que vous pouvez poser afin d’identifier avec certitude l’identité de chacun des trois dieux&nbsp;?
 
 2. 🌶️${}^{\color{red}0.5}$ Montrez qu'il est impossible de déterminer avec certitude l’identité des trois dieux en seulement deux questions, même en connaissant la signification de "da" et "ja".
 

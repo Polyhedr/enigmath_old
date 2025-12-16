@@ -2,7 +2,7 @@
 
 
 Considérons un jeu auquel participent $K$ joueurs. Chaque joueur reçoit trois dés à six faces. Chacun lance simultanément ses trois dés et obtient un score,
-défini comme la somme des trois résultats. Après ce premier lancer, chaque joueur doit décider :
+défini comme la somme des trois résultats. Après ce premier lancer, chaque joueur doit décider&nbsp;:
 
    - soit de conserver ce score et d'arrêter son tour,
    - soit de relancer les trois dés pour tenter d'obtenir un meilleur score.
