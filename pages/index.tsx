@@ -278,12 +278,12 @@ const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
 {/* Top-right indicators */}
 <div className="absolute top-0 right-0 flex gap-0 whitespace-nowrap text-sm font-semibold">
   {typeof img.difficulty === "number" && (
-    <span className="text-red">
+    <span className="text-red-800">
       🌶️<sup>{img.difficulty.toFixed(1)}</sup>
     </span>
   )}
   {typeof img.computer === "number" && (
-    <span className="text-blue">
+    <span className="text-blue-800">
       💻<sup>{img.computer.toFixed(1)}</sup>
     </span>
   )}
