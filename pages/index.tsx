@@ -193,19 +193,6 @@ const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
 
   // ---------------- Scroll to last viewed photo ----------------
   useEffect(() => {
-  const handleClickOutside = (e: MouseEvent) => {
-    if (
-      searchMenuRef.current &&
-      !searchMenuRef.current.contains(e.target as Node)
-    ) {
-      setSearchMenuOpen(false);
-    }
-  };
-
-  document.addEventListener("mousedown", handleClickOutside);
-  return () => document.removeEventListener("mousedown", handleClickOutside);
-}, []);
-  useEffect(() => {
     if (lastViewedPhoto && activeEnigma === null) {
       lastViewedPhotoRef.current?.scrollIntoView({ block: "center" });
       setLastViewedPhoto(null);
@@ -218,8 +205,6 @@ const Home: NextPage<{ images: ImageProps[] }> = ({ images }) => {
   };
 
   // ---------------- Filter images ----------------
-const [searchMenuOpen, setSearchMenuOpen] = useState(false);
-const searchMenuRef = useRef<HTMLDivElement>(null);
   const normalizedQuery = normalize(searchQuery);
 
   const filteredImages = images.filter((img) => {
@@ -267,48 +252,13 @@ const searchMenuRef = useRef<HTMLDivElement>(null);
           </div>
 
           {/* Search */}
-{/* Search with dropdown (frontend only) */}
-<div ref={searchMenuRef} className="relative w-full">
-  <input
-    type="text"
-    placeholder="Rechercher..."
-    value={searchQuery}
-    onChange={(e) => setSearchQuery(e.target.value)}
-    className="w-full h-12 pl-3 pr-10 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-gray-400"
-  />
-
-  {/* Arrow */}
-  <button
-    type="button"
-    onClick={() => setSearchMenuOpen((v) => !v)}
-    className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-800 transition"
-    aria-label="Search options"
-  >
-    <span
-      className={`text-xl inline-block transition-transform ${
-        searchMenuOpen ? "rotate-180" : ""
-      }`}
-    >
-      ▾
-    </span>
-  </button>
-
-  {/* Dropdown menu */}
-  {searchMenuOpen && (
-    <div className="absolute right-0 mt-2 w-44 bg-white border border-gray-200 rounded shadow-lg z-50">
-      <div className="px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer">
-        Trier par difficulté
-      </div>
-      <div className="px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer">
-        Trier par ordinateur
-      </div>
-      <div className="px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer">
-        Trier A → Z
-      </div>
-    </div>
-  )}
-</div>
-
+          <input
+            type="text"
+            placeholder="Rechercher..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded h-12"
+          />
         </div>
 
         {/* ---------------- Gallery ---------------- */}
