@@ -159,21 +159,6 @@ class MD:
 
     def __init__(self, tex_path):
         self.tex_path = tex_path
-        self.done_list = [
-"l-echiquier-du-diable",
-"l-enigme-de-freudenthal",
-"la-part-du-tresor",
-"la-prison-circulaire-de-taille-inconnue",
-"le-defi-des-trois-des",
-"les-ages-des-trois-enfants",
-"les-trois-dieux",
-"manger-un-max-de-pizza",
-"plus-rien-sur-la-ligne",
-"probleme-de-pesee",
-"quadrivillage",
-"recruter-un-stagiaire",
-]
-        self.done = sum(p in str(self.tex_path) for p in self.done_list)
         self.raw_text = self.remove_comments(tex_path.read_text(encoding='utf-8').split(r'\subsection')[1])
         self.structured_text = self.split(re.sub(r'\\item\s+\\indicators', r'\\item\\indicators', self.raw_text))
 
@@ -256,9 +241,4 @@ if __name__ == '__main__':
     for tex_path in tex_files:
         md = MD(tex_path)
         md.build()
-        if md.done:
-            md.export(str(tex_path).replace(tex_path.suffix,'.md'))
-        else:
-            md.export()
-            print(tex_path)
-            exit()
+        md.export(str(tex_path).replace(tex_path.suffix,'.md'))

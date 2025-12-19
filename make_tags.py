@@ -60,7 +60,7 @@ def main():
 
         out_path.write_text("\n".join(out_lines) + "\n", encoding='utf-8')
 
-        print(f"Wrote {out_path} hotpep={hotpep}, laptop={laptop})")
+        print(f"Wrote {out_path} (hotpep={hotpep}, laptop={laptop})")
 
 if __name__ == '__main__':
     main()

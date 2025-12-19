@@ -1,0 +1,219 @@
+%probabilité
+%recherche opérationnelle
+%optimisation
+\section*{Le gros lot}
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{\currfiledir/image.png}
+\end{center}
+\subsection*{Énoncé}
+Vous participez à une loterie un peu particulière. Il y a $n$ tickets à gratter, numérotés de $1$ à $n$. Parmi eux, un seul ticket cache le \emph{gros lot}, tandis que tous les autres ne donnent rien.  
+
+Avant même d'acheter un ticket $i$, vous pouvez consulter deux informations inscrites au dos du ticket :  
+\begin{itemize}
+    \item le prix d'achat $c_i$ du ticket,  
+    \item la probabilité $p_i$ que ce ticket contienne le gros lot.
+\end{itemize}
+
+Vous pouvez acheter et gratter des tickets \emph{dans l'ordre de votre choix}.
+
+\medskip
+\textbf{Questions} :
+\begin{enumerate}
+\item\indicators{1.5}{0} Dans quel ordre devez-vous acheter et gratter les $n$ tickets afin de {minimiser le coût espéré} pour remporter le gros lot ?
+\item\indicators{2.4}{0} Sachant que la même loterie est organisée \textbf{tous les mois}, quelle stratégie devez-vous adopter pour {minimiser le coût espéré} avant de gagner le gros lot au moins une fois ?
+\item\indicators{1.9}{0} Si le gros lot vaut $g$, quelle stratégie faut-il adopter pour maximiser le gain total espéré ?
+\end{enumerate}
+
+\subsection*{Solution}
+\begin{enumerate}
+    \item\label{Dans quel ordre devez-vous acheter} Pour chaque ticket $i$, définissons le ratio 
+\(
+r_i = \frac{p_i}{c_i}.
+\)
+Il faut alors acheter et gratter les tickets dans l'ordre décroissant des $r_i$.  
+En effet, supposons sans perte de généralité que 
+\(
+r_1 \ge r_2 \ge \dots \ge r_n.
+\)
+Si~$\sigma$ est une permutation des tickets correspondant à l'ordre dans lequel vous les grattez, alors le coût espéré avant de gagner vaut $C(\sigma),$ avec $C$ la fonction définie sur l'ensemble des arrangements\footnote{On aurait pu définir $C$ uniquement sur l’ensemble des permutations, mais le cadre plus général des arrangements sera utile pour les questions suivantes.} de $\{1,\dots,n\}$ par :
+\[
+C(s_1,\dots,s_k) \triangleq \sum_{i=1}^{k} p_{s_{i}} \sum_{j=1}^i c_{s_{j}}.
+\]
+On peut montrer que
+\[
+C(\sigma) - C(\text{id}_n) = \sum_{\{i,j\} \in I(\sigma),\, i<j} c_i c_j (r_i - r_j) \ge 0,
+\]
+où $I(\sigma)$ est l'ensemble des \textbf{inversions} de $\sigma$, c'est-à-dire des paires $\{i,j\}$ telles que $i<j$ et $\sigma(i) > \sigma(j)$. Ainsi, toute permutation \(\sigma\) différente de l'identité ne peut qu'augmenter le coût espéré. L'ordre décroissant des $r_i$ est donc \textbf{optimal}.
+
+
+\item\label{Sachant que la même loterie est organisée} On peut supposer sans perte de généralité que les probabilités $p_i$ sont toutes strictement positives. En effet, si un ticket $i$ vérifie $p_i = 0$, alors il ne peut jamais contenir le gros lot et peut donc être exclu du problème sans modifier la solution optimale. À chaque mois $t$, on note $S_t$ l'arrangement des tickets qu'on prévoit de gratter (si le gros lot ne se trouve pas dans $S_1$, alors aucun ticket supplémentaire n’est acheté au cours de ce mois et on attend le mois suivant pour recommencer la procédure en itérant sur les tickets de $S_2$, et ainsi de suite jusqu’à ce que le gros lot soit remporté). L’objectif est de choisir une stratégie $(S_1,S_2,\dots)$ minimisant le coût total espéré
+\begin{align*}
+ \mathcal{J}(S_1,S_2,\dots)&\triangleq\sum_{t=1}^{\infty}\left(\sum_{j\in S_t} p_j \sum_{u=1}^{t-1}\sum_{j\in S_u}c_j + C(S_t)\right)\prod_{u=1}^{t-1}\left(1-\sum_{j\in S_u} p_j\right)
+ \\&= C(S_1) + \left(1-\sum_{j\in S_1} p_j\right)\left(\sum_{j\in S_1}c_j + \mathcal{J}(S_2,\dots)\right),
+\end{align*}
+où $C$ est définie à la question précédente. En notant  $\mathcal{J}^* \triangleq \mathcal{J}(S_1^*, S_2^*, \dots)$ la valeur minimale de la fonction objectif $\mathcal{J}$, la relation précédente implique que 
+\[
+\mathcal{J}^* 
+= \frac{C(S_1^*) + \left(1 - \sum_{j \in S_1^*} p_j \right)\sum_{j \in S_1^*} c_j}{\sum_{j \in S_1^*} p_j}
+= \mathcal{J}(S_1^*, S_1^*, \dots).
+\]
+
+Cela montre qu’il existe une stratégie optimale qui est \textbf{stationnaire}, c’est-à-dire de la forme
+\( 
+(S^*, S^*, \dots). 
+\) 
+On note désormais
+\[
+J(S) \triangleq \mathcal{J}(S,S,\dots) = \frac{C(S) + \left(1 - \sum_{j \in S} p_j \right)\sum_{j \in S} c_j}{\sum_{j \in S} p_j}=\frac{\sum_{i=1}^k c_{s_i}\left(1-\sum_{j=1}^{i-1}p_{s_j}\right)}{\sum_{i=1}^k p_{s_i}},
+\]
+pour tout arrangement $S=(s_1,\dots,s_k)$ des tickets (avec comme convention $J(\emptyset)=\infty$).
+\begin{lemma} Soit $S=(s_1,\dots,s_k)$, pour $k\geq 1$, et $s_{k+1}\notin S$. Si $r_{s_{k+1}}\geq r_{s_k}$, alors
+$$J(S) \geq \min\left(J(s_1,\dots,s_{k-1}),J(s_1,\dots,s_k,s_{k+1})\right).$$
+\end{lemma}
+\begin{proof} Si $k=1$, alors, en utilisant l'hypothèse $r_{s_{k+1}}\geq r_{s_k}$, on a $$J(s_k,s_{k+1})-J(s_k)=\frac{p_{s_{k+1}}}{p_{s_k}+p_{s_{k+1}}}\left(\frac{1-p_{s_k}}{r_{s_{k+1}}}-\frac{1}{r_{s_k}}\right)\leq 0.$$
+On suppose donc que $k\ge 2$. Si $J(s_1,\dots,s_{k-1})< J(S)$, il n'y a rien a montrer. Sinon, 
+\[J(S)\geq \frac{1}{p_{s_k}}\left(J(S)\sum_{i=1}^{k} p_{s_i} - J(s_1,\dots,s_{k-1})\sum_{i=1}^{k-1} p_{s_i}\right) = \frac{1-\sum_{j=1}^{k-1}p_{s_j}}{r_{s_k}}\geq \frac{1-\sum_{j=1}^{k}p_{s_j}}{r_{s_k}}.\]
+On a donc
+\begin{align*}
+    J(s_1,\dots,s_k,s_{k+1}) - J(S) &= \frac{J(S)\sum_{i=1}^k p_{s_i}}{\sum_{i=1}^{k+1} p_{s_i}} + \frac{p_{s_{k+1}}\left(1-\sum_{i=1}^k p_{s_i}\right)}{r_{s_{k+1}}\sum_{i=1}^{k+1} p_{s_i}} - J(S)
+    \\
+    &=  \frac{-J(S) p_{s_{k+1}}}{\sum_{i=1}^{k+1} p_{s_i}} + \frac{p_{s_{k+1}}\left(1-\sum_{i=1}^k p_{s_i}\right)}{r_{s_{k+1}}\sum_{i=1}^{k+1} p_{s_i}}
+    \\&= \frac{p_{s_{k+1}}}{\sum_{i=1}^{k+1} p_{s_i}}\left(\frac{1-\sum_{i=1}^k p_{s_i}}{r_{s_{k+1}}} - J(S)\right)
+    \\&\leq \frac{p_{s_{k+1}}}{\sum_{i=1}^{k+1} p_{s_i}}\left(\frac{1-\sum_{i=1}^k p_{s_i}}{r_{s_{k+1}}} - \frac{1-\sum_{j=1}^{k}p_{s_j}}{r_{s_k}}\right)\leq 0,
+\end{align*}
+en utilisant l'hypothèse $r_{s_{k+1}}\geq r_{s_k}$.
+\end{proof}
+\begin{theorem}
+Supposons de nouveau sans perte de généralité que $r_1 \ge r_2 \ge \dots \ge r_n$. Alors, il existe un minimiseur de $J$ de la forme $S^*=(1,2,\dots,k)$ pour un certain $k\in \{1,\dots,n\}$.
+\end{theorem}
+\begin{proof}
+À support fixé $S = (s_1,\dots,s_k)$, et en tant que fonction de l’ordre, $J$ dépend linéairement de $C$. D’après la question précédente, un ordre optimal est donné par
+\(
+s_{i_1} < s_{i_2} < \dots < s_{i_k},
+\)
+c’est-à-dire l’ordre décroissant des ratios $r_i$. On peut donc se restreindre à l’ensemble $\mathcal S^*$ des minimiseurs de $J$ respectant cet ordre.
+Pour $\ell \ge 1$, on note $\mathcal S^*_\ell$ l’ensemble des arrangements $S \in \mathcal S^*$ commençant par $(1,2,\dots,\ell-1)$.  
+Soit $\ell$ le plus grand entier tel que $\mathcal S^*_\ell \neq \varnothing$, et soit $S^* \in \mathcal S^*_\ell$ de cardinal minimal.
+Supposons par l’absurde que
+\[
+n > \ell, 
+\qquad
+S^* = (1,\dots,\ell-1,s_\ell,\dots,s_{|S^*|}),
+\qquad |S^*| \ge \ell.
+\]
+
+D’après le lemme précédent, et puisque $r_\ell \ge r_{s_{|S^*|}}$, on a
+\[
+J(S^*) \ge 
+\min\!\left(
+J(1,\dots,\ell-1,s_\ell,\dots,s_{|S^*|-1}),
+J(1,\dots,\ell-1,s_\ell,\dots,s_{|S^*|},\ell)
+\right),
+\]
+et donc l’égalité est atteinte. L’arrangement $(1,\dots,\ell-1,s_\ell,\dots,s_{|S^*|},\ell)$ ne respect pas l'ordre des ratios, mais on peut y remédier en déplaçant $\ell$ immédiatement après $\ell-1$, ce qui ne peut que diminuer la valeur de $J$ d’après la question précédente. On obtient ainsi
+\[
+J(S^*) =
+\min\!\left(
+J(1,\dots,\ell-1,s_\ell,\dots,s_{|S^*|-1}),
+J(1,\dots,\ell,s_\ell,\dots,s_{|S^*|})
+\right).
+\]
+Par conséquent, l’un des deux arrangements du membre de droite appartient à $\mathcal S^*$.  
+Or, le premier appartient à $\mathcal S^*_\ell$ et contredit la minimalité du cardinal de $S^*$, tandis que le second appartient à $\mathcal S^*_{\ell+1}$, contredisant la maximalité de $\ell$. Ceci conclut la contradiction.
+\end{proof}
+\begin{remark}
+Il découle de ce qui précède que, pour déterminer une stratégie optimale, il suffit d’évaluer $J$ sur les $n$ arrangements de la forme
+\(
+(1,\dots,k), \qquad k \in \{1,\dots,n\}.
+\)
+Autrement dit, parmi toutes les stratégies possibles, une stratégie optimale est nécessairement obtenue en considérant un préfixe de l’ordre optimal.
+\end{remark}
+Le code Python ci-dessous présente une implémentation de l’algorithme résultant de cette analyse théorique.
+\begin{lstlisting}
+(*@\codeheader{\currfiledir/2.py}@*)
+(*@ @*)
+\end{lstlisting}
+\vspace{-.455cm}
+\lstinputlisting{\currfiledir/2.py}
+
+\item\label{Si le gros lot vaut} Il suffit de considérer la stratégie optimale pour une unique loterie. Le gain total espéré associé à un support $S$ est alors donné par
+\[
+U(S) \triangleq g \sum_{j \in S} p_j 
+- C(S) 
+- \left(1 - \sum_{j \in S} p_j \right)\sum_{j \in S} c_j.
+\]
+
+On observe immédiatement que l’ordre optimal des tickets reste celui induit par les ratios $r_i$. Soit $S = (s_1,\dots,s_k)$ un support ordonné selon cet ordre. On a alors
+\begin{align*}
+U(S) - U(s_1,\dots,s_k,s_{k+1})
+&= - g p_{s_{k+1}} 
++ c_{s_{k+1}}\!\left(1 - \sum_{i=1}^{k} p_{s_i}\right), \\[0.5em]
+U(S) - U(s_1,\dots,s_{k-1})
+&= g p_{s_k} 
+- c_{s_k}\!\left(1 - \sum_{i=1}^{k-1} p_{s_i}\right).
+\end{align*}
+
+En divisant respectivement par $p_{s_{k+1}}$ et $p_{s_k}$, on obtient
+\begin{align*}
+\frac{U(S) - U(s_1,\dots,s_k,s_{k+1})}{p_{s_{k+1}}}
+&= -g + \frac{1 - \sum_{i=1}^{k} p_{s_i}}{r_{s_{k+1}}}
+\le -g + \frac{1 - \sum_{i=1}^{k-1} p_{s_i}}{r_{s_{k+1}}}, \\[0.5em]
+\frac{U(S) - U(s_1,\dots,s_{k-1})}{p_{s_k}}
+&= g - \frac{1 - \sum_{i=1}^{k-1} p_{s_i}}{r_{s_k}}.
+\end{align*}
+
+En additionnant ces deux inégalités, on obtient, dès que $r_{s_{k+1}} \ge r_{s_k}$,
+\[
+\frac{U(S) - U(s_1,\dots,s_k,s_{k+1})}{p_{s_{k+1}}}
++ \frac{U(S) - U(s_1,\dots,s_{k-1})}{p_{s_k}}
+\le 0.
+\]
+
+Il en résulte que
+\begin{align*}
+U(S)
+&\le
+\frac{
+p_{s_{k+1}}\, U(s_1,\dots,s_{k-1})
++ p_{s_k}\, U(s_1,\dots,s_k,s_{k+1})
+}{
+p_{s_k} + p_{s_{k+1}}
+}
+\\&\le
+\max\!\left(
+U(s_1,\dots,s_{k-1}),
+U(s_1,\dots,s_k,s_{k+1})
+\right).
+\end{align*}
+
+Ce résultat est analogue à celui du lemme établi à la question précédente et permet, par application du même théorème (en remplaçant $J$ par $U$), de conclure que la stratégie optimale est obtenue en considérant un préfixe de l’ordre décroissant des ratios $r_i$.
+\end{enumerate}
+
+\subsection*{Notes et références}
+
+La question~\ref{Dans quel ordre devez-vous acheter} de cette énigme peut se reformuler de nombreuses façons équivalentes, selon le problème précis de recherche opérationnelle auquel on s’intéresse :
+
+\begin{itemize}
+    \item \textbf{Search theory (théorie de la recherche)} : l’objectif est de minimiser le coût espéré avant de trouver un objet caché aléatoirement parmi $n$ emplacements. Chaque emplacement est caractérisé par une probabilité connue de contenir l'objet et un coût d’exploration.
+    
+    \item \textbf{Troubleshooting (diagnostic séquentiel)} : de manière analogue, dans un système comportant plusieurs composants susceptibles d’être défaillants, le diagnostic consiste à tester séquentiellement ces composants afin d’identifier la panne. Chaque test est associé à un coût et à une probabilité de détecter la défaillance.
+    
+    \item \textbf{Single-machine scheduling (ordonnancement mono-machine)} : considérons $n$ tâches à traiter sur une machine unique, chaque tâche étant définie par un temps de traitement et un poids représentant son importance. L’objectif est de minimiser la somme pondérée des temps de traitement.
+\end{itemize}
+
+Ce dernier domaine est sans doute le plus connu. Le résultat selon lequel l’ordre optimal est donné par le ratio $p_i / c_i$ est appelé la \emph{règle de Smith} \cite{smith1956various}.
+Cette règle a été généralisée au cas où il existe des \emph{contraintes de précédence} entre les tâches, à travers la notion de \emph{décomposition de Sidney} \cite{sidney1975decomposition}. Dans ce cadre, il convient d’explorer en priorité les « régions » $A$ de densité 
+\(
+\rho(A) = \frac{\sum_{i \in A} p_i}{\sum_{i \in A} c_i}
+\) maximale.
+
+La question~\ref{Sachant que la même loterie est organisée}, tirée de \cite{perrault2019finding}, est davantage liée à la théorie de la recherche. Elle peut être interprétée comme un problème de recherche séquentielle répétée avec possibilité d’abandon et de redémarrage.
+
+Enfin, la question~\ref{Si le gros lot vaut} correspond à un problème classique de \emph{troubleshooting}, même si cela n’apparaît pas immédiatement. Plus précisément, il s’agit d’une variante dans laquelle une action supplémentaire, appelée \emph{call service} \cite{heckerman1995decision}, permet de réparer automatiquement le système moyennant un coût donné. Dans notre cas, au lieu de chercher à maximiser $U$, on peut chercher à minimiser $g - U$ (ce qui est équivalent). Le paramètre $g$ peut alors être interprété comme le coût du \emph{call service}, et $g - U$ comme le coût total espéré de réparation du système.
+
+
+
+\bibliography{\currfiledir/sources.bib}
+\newpage
+
+
